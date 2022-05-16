@@ -4,4 +4,16 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="AggregateRoots\" />
+    <None Remove="ValueObjects\" />
+    <None Remove="Entities\" />
+    <None Remove="Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AggregateRoots\" />
+    <Folder Include="ValueObjects\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Common\" />
+  </ItemGroup>
 </Project>
