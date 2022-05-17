@@ -16,16 +16,37 @@ namespace Domain.AggregateRoots
         public String Campus { get; set; }
         public MemberType MemberType { get; set; }
         public LibrarianType LibrarianType { get; set; }
-        public List<LibraryCard> LibraryCards { get; set; }
+        public List<LibraryCard> LibraryCards { get; private set; }
 
         public LibUser()
         {
+            this.LibraryCards = new List<LibraryCard>();
         }
 
-        public LibUser(int SSN, String fName)
+        public LibUser(int SSN, String fName, String surname, string address, int phone, string campus,
+            MemberType memberType, LibrarianType librarianType)
         {
             Ensure.That(fName, nameof(fName)).IsNotNullOrEmpty();
+            Ensure.That(surname, nameof(surname)).IsNotNullOrEmpty();
+            Ensure.That(address, nameof(address)).IsNotNullOrEmpty();
+            Ensure.That(campus, nameof(campus)).IsNotNullOrEmpty();
+            this.SSN = SSN;
+            this.FName = fName;
+            this.Surname = surname;
+            this.Address = address;
+            this.Campus = campus;
+            this.MemberType = memberType;
+            this.LibrarianType = librarianType;
+            this.LibraryCards = new List<LibraryCard>();
         }
+
+        public void AddLibraryCard(LibraryCard card)
+        {
+            Ensure.That(card, nameof(card)).IsNotNull();
+            this.LibraryCards.Add(card);
+        }
+
+
     }
 
     public enum MemberType
@@ -35,7 +56,7 @@ namespace Domain.AggregateRoots
 
     public enum LibrarianType
     {
-        Admin
+        Admin, HeadLibrarian, Librarian
     }
 
 }

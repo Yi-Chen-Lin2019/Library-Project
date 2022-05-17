@@ -18,9 +18,14 @@ namespace Domain.AggregateRoots
         {
         }
 
-        public BorrowOrder(int orderID, DateTime borrowDate)
+        public BorrowOrder(int orderID, DateTime borrowDate, LibUser borrower, LibUser librarian, Item item)
         {
-            Ensure.That(borrowDate, nameof(borrowDate)).IsNotNull();
+            Ensure.That(item, nameof(item)).IsNotNull();
+            this.OrderID = orderID;
+            this.BorrowDate = borrowDate;
+            this.Borrower = borrower;
+            this.Librarian = librarian;
+            this.Item = item;
         }
     }
 }
