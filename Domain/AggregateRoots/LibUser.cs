@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Domain.Common;
 using Domain.Entities;
+using EnsureThat;
 
 namespace Domain.AggregateRoots
 {
@@ -19,6 +20,11 @@ namespace Domain.AggregateRoots
 
         public LibUser()
         {
+        }
+
+        public LibUser(int SSN, String fName)
+        {
+            Ensure.That(fName, nameof(fName)).IsNotNullOrEmpty();
         }
     }
 

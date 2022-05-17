@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Common;
 using Domain.Entities;
+using EnsureThat;
 
 namespace Domain.AggregateRoots
 {
@@ -15,6 +16,11 @@ namespace Domain.AggregateRoots
 
         public BorrowOrder()
         {
+        }
+
+        public BorrowOrder(int orderID, DateTime borrowDate)
+        {
+            Ensure.That(borrowDate, nameof(borrowDate)).IsNotNull();
         }
     }
 }
