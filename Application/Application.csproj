@@ -42,6 +42,18 @@
     <None Remove="Microsoft.Extensions.DependencyInjection" />
     <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Features\BorrowOrder\Commands\CreateBorrowOder\" />
+    <None Remove="Features\BorrowOrder\Commands\UpdateBorrowOrder\" />
+    <None Remove="Features\BorrowOrder\Commands\DeleteBorrowOrder\" />
+    <None Remove="Features\ItemDescriptor\Commands\CreateItemDescriptor\" />
+    <None Remove="Features\ItemDescriptor\Commands\DeleteItemDescriptor\" />
+    <None Remove="Features\ItemDescriptor\Commands\UpdateDescriptor\" />
+    <None Remove="Features\LibUser\Commands\CreateLibUser\" />
+    <None Remove="Features\LibUser\Commands\DeleteLibUser\" />
+    <None Remove="Features\LibUser\Commands\UpdateLibUser\" />
+    <None Remove="Features\Reservation\Commands\CreateReservation\" />
+    <None Remove="Features\Reservation\Commands\UpdateReservation\" />
+    <None Remove="Features\Reservation\Commands\DeleteReservation\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -72,6 +84,18 @@
     <Folder Include="Features\LibUser\Queries\GetAllLibUsers\" />
     <Folder Include="Features\Reservation\Queries\GetReservation\" />
     <Folder Include="Features\Reservation\Queries\GetAllReservations\" />
+    <Folder Include="Features\BorrowOrder\Commands\CreateBorrowOder\" />
+    <Folder Include="Features\BorrowOrder\Commands\UpdateBorrowOrder\" />
+    <Folder Include="Features\BorrowOrder\Commands\DeleteBorrowOrder\" />
+    <Folder Include="Features\ItemDescriptor\Commands\CreateItemDescriptor\" />
+    <Folder Include="Features\ItemDescriptor\Commands\DeleteItemDescriptor\" />
+    <Folder Include="Features\ItemDescriptor\Commands\UpdateDescriptor\" />
+    <Folder Include="Features\LibUser\Commands\CreateLibUser\" />
+    <Folder Include="Features\LibUser\Commands\DeleteLibUser\" />
+    <Folder Include="Features\LibUser\Commands\UpdateLibUser\" />
+    <Folder Include="Features\Reservation\Commands\CreateReservation\" />
+    <Folder Include="Features\Reservation\Commands\UpdateReservation\" />
+    <Folder Include="Features\Reservation\Commands\DeleteReservation\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
