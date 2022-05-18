@@ -39,6 +39,9 @@
     <None Remove="Features\LibUser\Queries\GetAllLibUsers\" />
     <None Remove="Features\Reservation\Queries\GetReservation\" />
     <None Remove="Features\Reservation\Queries\GetAllReservations\" />
+    <None Remove="Microsoft.Extensions.DependencyInjection" />
+    <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -76,6 +79,9 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Features\ItemDescriptor\Queries\GetItemDescriptor\GetItemDescriptorQueryHandler.cs" />
