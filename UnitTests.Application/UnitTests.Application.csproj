@@ -27,6 +27,9 @@
     <None Remove="Features\BorrowOrder\" />
     <None Remove="Features\BorrowOrder\Commands\" />
     <None Remove="Features\BorrowOrder\Queries\" />
+    <None Remove="Features\LibUser\" />
+    <None Remove="Features\LibUser\Commands\" />
+    <None Remove="Features\LibUser\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -36,6 +39,9 @@
     <Folder Include="Features\BorrowOrder\" />
     <Folder Include="Features\BorrowOrder\Commands\" />
     <Folder Include="Features\BorrowOrder\Queries\" />
+    <Folder Include="Features\LibUser\" />
+    <Folder Include="Features\LibUser\Commands\" />
+    <Folder Include="Features\LibUser\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />

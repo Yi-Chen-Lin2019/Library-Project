@@ -35,6 +35,8 @@
     <None Remove="Features\Reservation\.DS_Store" />
     <None Remove="Features\BorrowOrder\Queries\GetBorrowOrder\" />
     <None Remove="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
+    <None Remove="Features\LibUser\Queries\GetLibUser\" />
+    <None Remove="Features\LibUser\Queries\GetAllLibUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -61,6 +63,8 @@
     <Folder Include="Features\ItemDescriptor\Queries\GetAllItemDescriptors\" />
     <Folder Include="Features\BorrowOrder\Queries\GetBorrowOrder\" />
     <Folder Include="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
+    <Folder Include="Features\LibUser\Queries\GetLibUser\" />
+    <Folder Include="Features\LibUser\Queries\GetAllLibUsers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
