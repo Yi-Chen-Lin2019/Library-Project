@@ -37,6 +37,8 @@
     <None Remove="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
     <None Remove="Features\LibUser\Queries\GetLibUser\" />
     <None Remove="Features\LibUser\Queries\GetAllLibUsers\" />
+    <None Remove="Features\Reservation\Queries\GetReservation\" />
+    <None Remove="Features\Reservation\Queries\GetAllReservations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -65,6 +67,8 @@
     <Folder Include="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
     <Folder Include="Features\LibUser\Queries\GetLibUser\" />
     <Folder Include="Features\LibUser\Queries\GetAllLibUsers\" />
+    <Folder Include="Features\Reservation\Queries\GetReservation\" />
+    <Folder Include="Features\Reservation\Queries\GetAllReservations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

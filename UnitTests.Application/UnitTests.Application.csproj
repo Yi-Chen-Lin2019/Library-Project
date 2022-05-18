@@ -30,6 +30,9 @@
     <None Remove="Features\LibUser\" />
     <None Remove="Features\LibUser\Commands\" />
     <None Remove="Features\LibUser\Queries\" />
+    <None Remove="Features\Reservation\" />
+    <None Remove="Features\Reservation\Commands\" />
+    <None Remove="Features\Reservation\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -42,6 +45,9 @@
     <Folder Include="Features\LibUser\" />
     <Folder Include="Features\LibUser\Commands\" />
     <Folder Include="Features\LibUser\Queries\" />
+    <Folder Include="Features\Reservation\" />
+    <Folder Include="Features\Reservation\Commands\" />
+    <Folder Include="Features\Reservation\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
