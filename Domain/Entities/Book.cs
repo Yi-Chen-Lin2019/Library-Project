@@ -1,4 +1,6 @@
 ﻿using System;
+using Domain.AggregateRoots;
+
 namespace Domain.Entities
 {
     public class Book : ItemDescriptor
