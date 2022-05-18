@@ -28,6 +28,7 @@
     <None Remove="Features\ItemDescriptor\Queries\GetItemDescriptor\" />
     <None Remove="Features\ItemDescriptor\Queries\GetAllItemDescriptor\" />
     <None Remove="MediatR" />
+    <None Remove="AutoMapper" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -58,5 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
 </Project>

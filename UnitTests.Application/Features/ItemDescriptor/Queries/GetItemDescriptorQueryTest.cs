@@ -4,7 +4,7 @@ using Xunit;
 
 namespace UnitTests.Application.Features.ItemDescriptor.Queries
 {
-    public class GetItemDescriptorTest
+    public class GetItemDescriptorQueryTest
     {
         [Fact]
         public void Create_Valid_Company_Query_Expect_Success()
