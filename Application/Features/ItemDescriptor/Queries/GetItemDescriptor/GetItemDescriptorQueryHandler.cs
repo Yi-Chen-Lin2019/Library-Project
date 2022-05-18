@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Features.ItemDescriptor.Dto;
 using AutoMapper;
 using Domain.Common;
+using Application.Contracts.Persistence;
 
 namespace Application.Features.ItemDescriptor.Queries.GetItemDescriptor
 {

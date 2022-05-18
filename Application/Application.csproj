@@ -83,7 +83,4 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Features\ItemDescriptor\Queries\GetItemDescriptor\GetItemDescriptorQueryHandler.cs" />
-  </ItemGroup>
 </Project>

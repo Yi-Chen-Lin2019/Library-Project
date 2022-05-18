@@ -1,9 +1,10 @@
 ﻿using System;
 using Domain.Common;
+using Domain.Entities;
 
-namespace Domain.Entities
+namespace Domain.AggregateRoots
 {
-    public abstract class ItemDescriptor : Entity, IItemDescriptor
+    public abstract class ItemDescriptor : AggregateRoot, IItemDescriptor
     {
         public int ID { get; set; }
         public int Year { get; set; }
