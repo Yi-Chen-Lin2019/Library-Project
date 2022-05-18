@@ -40,6 +40,16 @@ namespace Domain.AggregateRoots
             this.LibraryCards = new List<LibraryCard>();
         }
 
+        public LibUser(int ssn, string fName, string surname, string address, int phone, string campus)
+        {
+            SSN = ssn;
+            FName = fName;
+            Surname = surname;
+            Address = address;
+            Phone = phone;
+            Campus = campus;
+        }
+
         public void AddLibraryCard(LibraryCard card)
         {
             Ensure.That(card, nameof(card)).IsNotNull();
