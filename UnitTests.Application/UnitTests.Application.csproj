@@ -24,12 +24,18 @@
     <None Remove="Features\ItemDescriptor\" />
     <None Remove="Features\ItemDescriptor\Commands\" />
     <None Remove="Features\ItemDescriptor\Queries\" />
+    <None Remove="Features\BorrowOrder\" />
+    <None Remove="Features\BorrowOrder\Commands\" />
+    <None Remove="Features\BorrowOrder\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
     <Folder Include="Features\ItemDescriptor\" />
     <Folder Include="Features\ItemDescriptor\Commands\" />
     <Folder Include="Features\ItemDescriptor\Queries\" />
+    <Folder Include="Features\BorrowOrder\" />
+    <Folder Include="Features\BorrowOrder\Commands\" />
+    <Folder Include="Features\BorrowOrder\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />

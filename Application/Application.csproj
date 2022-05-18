@@ -29,6 +29,12 @@
     <None Remove="Features\ItemDescriptor\Queries\GetAllItemDescriptor\" />
     <None Remove="MediatR" />
     <None Remove="AutoMapper" />
+    <None Remove="Features\ItemDescriptor\.DS_Store" />
+    <None Remove="Features\BorrowOrder\.DS_Store" />
+    <None Remove="Features\LibUser\.DS_Store" />
+    <None Remove="Features\Reservation\.DS_Store" />
+    <None Remove="Features\BorrowOrder\Queries\GetBorrowOrder\" />
+    <None Remove="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -53,6 +59,8 @@
     <Folder Include="Features\Reservation\Queries\" />
     <Folder Include="Features\ItemDescriptor\Queries\GetItemDescriptor\" />
     <Folder Include="Features\ItemDescriptor\Queries\GetAllItemDescriptors\" />
+    <Folder Include="Features\BorrowOrder\Queries\GetBorrowOrder\" />
+    <Folder Include="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
@@ -60,5 +68,8 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Features\ItemDescriptor\Queries\GetItemDescriptor\GetItemDescriptorQueryHandler.cs" />
   </ItemGroup>
 </Project>
