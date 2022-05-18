@@ -10,8 +10,13 @@ namespace Domain.AggregateRoots
         public int Year { get; set; }
         public String Author { get; set; }
         public String Title { get; set; }
-        public String Type { get; set; }
+        public Type Type { get; set; }
         public String Description { get; set; }
         public String Publisher { get; set; }
+    }
+
+    public enum Type
+    {
+        Stationary, Borrow, Wanted
     }
 }
