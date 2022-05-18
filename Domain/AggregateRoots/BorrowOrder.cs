@@ -36,5 +36,11 @@ namespace Domain.AggregateRoots
             this.Librarian = librarian;
             this.Item = item;
         }
+
+        public BorrowOrder(int orderID, DateTime returnDate)
+        {
+            OrderID = orderID;
+            ReturnDate = returnDate;
+        }
     }
 }

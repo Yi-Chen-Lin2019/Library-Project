@@ -7,10 +7,10 @@ namespace Application.Features.BorrowOrder.Commands.CreateBorrowOrder
 {
     public class CreateBorrowOrderCommand : ICommand
     {
-        public DateTime BorrowDate { get; }
-        public Domain.AggregateRoots.LibUser Borrower { get; }
-        public Domain.AggregateRoots.LibUser Librarian { get; }
-        public Item Item { get; }
+        public DateTime BorrowDate { get; private set; }
+        public Domain.AggregateRoots.LibUser Borrower { get; private set; }
+        public Domain.AggregateRoots.LibUser Librarian { get; private set; }
+        public Item Item { get; private set; }
     
         public CreateBorrowOrderCommand(DateTime borrowDate, LibUserDto borrower, LibUserDto librarian, ItemDto item)
         {

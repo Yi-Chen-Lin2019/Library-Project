@@ -5,12 +5,12 @@ namespace Application.Features.LibUser.Commands.CreateLibUser
 {
     public class CreateLibUserCommand : ICommand
     {
-        public int SSN { get; }
-        public String FName { get; }
-        public String Surname { get; }
-        public String Address { get; }
-        public int Phone { get; }
-        public String Campus { get; }
+        public int SSN { get; private set; }
+        public String FName { get; private set; }
+        public String Surname { get; private set; }
+        public String Address { get; private set; }
+        public int Phone { get; private set; }
+        public String Campus { get; private set; }
 
         public CreateLibUserCommand(int ssn, String fName, String surname, String address, int phone, string campus)
         {
