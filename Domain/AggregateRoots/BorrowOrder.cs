@@ -27,5 +27,14 @@ namespace Domain.AggregateRoots
             this.Librarian = librarian;
             this.Item = item;
         }
+
+        public BorrowOrder(DateTime borrowDate, LibUser borrower, LibUser librarian, Item item)
+        {
+            Ensure.That(item, nameof(item)).IsNotNull();
+            this.BorrowDate = borrowDate;
+            this.Borrower = borrower;
+            this.Librarian = librarian;
+            this.Item = item;
+        }
     }
 }
