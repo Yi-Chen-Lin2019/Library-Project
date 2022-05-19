@@ -25,11 +25,23 @@ namespace Application.Features.ItemDescriptor.Queries.GetAllItemDescriptors
             List<ItemDescriptorDto> result = new List<ItemDescriptorDto>();
             var itemDescriptors = await this.itemDescriptorRepository.GetAllAsync();
             foreach (var itemDescriptor in itemDescriptors)
-            {               
-                
-                
-                
-                
+            {
+                ItemDescriptorDto itemDescriptorDto = null;
+                switch (itemDescriptor.ItemDescriptorType)
+                {
+                    case Domain.AggregateRoots.ItemDescriptorType.Article:
+                        itemDescriptorDto = this.mapper.Map<ArticleDto>(itemDescriptor);
+                        break;
+                    case Domain.AggregateRoots.ItemDescriptorType.Map:
+                        itemDescriptorDto = this.mapper.Map<MapDto>(itemDescriptor);
+                        break;
+                    case Domain.AggregateRoots.ItemDescriptorType.Book:
+                        itemDescriptorDto = this.mapper.Map<BookDto>(itemDescriptor);
+                        break;
+                    default:
+                        break;
+                }
+                result.Add(itemDescriptorDto);
             }
             return new CollectionResponseBase<ItemDescriptorDto>()
             {
