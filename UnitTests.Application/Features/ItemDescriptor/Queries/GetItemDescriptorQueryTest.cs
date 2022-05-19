@@ -7,7 +7,7 @@ namespace UnitTests.Application.Features.ItemDescriptor.Queries
     public class GetItemDescriptorQueryTest
     {
         [Fact]
-        public void Create_Valid_Company_Query_Expect_Success()
+        public void Create_Valid_ItemDescriptor_Query_Expect_Success()
         {
             GetItemDescriptorQuery query = new GetItemDescriptorQuery(1);
             Assert.Equal(1, query.ID);
