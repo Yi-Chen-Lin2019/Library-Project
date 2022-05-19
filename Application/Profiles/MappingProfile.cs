@@ -13,7 +13,11 @@ namespace Application.Profiles
     {
         public MappingProfile()
         {
-            CreateMap<ItemDescriptor, ItemDescriptorDto>().ReverseMap();
+            CreateMap<ItemDescriptor, ItemDescriptorDto>()
+                .Include<Article, ArticleDto>()
+                .Include<Map, MapDto>()
+                .Include<Book, BookDto>()
+                .ReverseMap();
             CreateMap<Article, ArticleDto>().ReverseMap();
             CreateMap<Map, MapDto>().ReverseMap();
             CreateMap<Book, BookDto>().ReverseMap();
