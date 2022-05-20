@@ -11,6 +11,11 @@ namespace Application.Features.ItemDescriptor.Dto
         {
         }
 
+        public ItemDto(int itemId)
+        {
+            this.ItemID = itemId;
+        }
+
         public ItemDto(int itemId, ItemDescriptorDto itemDescriptor)
         {
             this.ItemID = itemId;
