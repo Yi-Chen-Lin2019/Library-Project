@@ -44,8 +44,8 @@ namespace API
             //services.AddScoped<IItemDescriptorRepository, ItemDescriptorRepository>();
             //services.AddScoped<DataContext, DataContext>();
 
-            services.AddScoped<IDispatcher, Dispatcher>();           
-            services.AddApplicationServices();
+            //services.AddScoped<IDispatcher, Dispatcher>();           
+            //services.AddApplicationServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
