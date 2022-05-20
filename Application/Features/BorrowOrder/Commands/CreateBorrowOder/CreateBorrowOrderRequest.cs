@@ -1,4 +1,6 @@
 ﻿using System;
+using Application.Features.ItemDescriptor.Dto;
+using Application.Features.LibUser.Dto;
 using Domain.Common;
 using Domain.Entities;
 using FluentValidation;
@@ -8,9 +10,9 @@ namespace Application.Features.BorrowOrder.Commands.CreateBorrowOrder
     public class CreateBorrowOrderRequest
     {
         public DateTime BorrowDate { get; set; }
-        public Domain.AggregateRoots.LibUser Borrower { get; set; }
-        public Domain.AggregateRoots.LibUser Librarian { get; set; }
-        public Item Item { get; set; }
+        public LibUserDto Borrower { get; set; }
+        public LibUserDto Librarian { get; set; }
+        public ItemDto Item { get; set; }
 
         public CreateBorrowOrderRequest()
         {
