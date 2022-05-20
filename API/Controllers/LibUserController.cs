@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application;
+using Application.Features.LibUser.Queries.GetAllLibUsers;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +11,24 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class LibUserController : BaseController
     {
+        private IMapper mapper;
+        private IDispatcher dispatcher;
+
+        public LibUserController(IMapper mapper, IDispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+            this.mapper = mapper;
+        }
+
         // GET: api/<LibUserController>
         [HttpGet]
-        [Route("LibUser")]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetLibUsers()
         {
-            return new string[] { "value1", "value2" };
+            GetAllLibUsersQuery query = new GetAllLibUsersQuery();
+            var result = await this.dispatcher.Dispatch(query);
+            return FromResult(result);
         }
 
         // GET api/<LibUserController>/5
