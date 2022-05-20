@@ -52,13 +52,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBorrowOrder(CreateBorrowOrderRequest companyRequest)
+        public async Task<IActionResult> CreateBorrowOrder(CreateBorrowOrderRequest request)
         {
             CreateBorrowOrderCommand command = new CreateBorrowOrderCommand(
-                companyRequest.BorrowDate,
-                companyRequest.Borrower,
-                companyRequest.Librarian,
-                companyRequest.Item);
+                request.BorrowDate,
+                request.Borrower,
+                request.Librarian,
+                request.Item);
             var result = await this.dispatcher.Dispatch(command);
             return FromResult(result);
         }
