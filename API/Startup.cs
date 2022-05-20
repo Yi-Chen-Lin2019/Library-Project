@@ -1,3 +1,6 @@
+using API.Utilities;
+using Application;
+using Application.Contracts.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,12 +29,23 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+            //todo uncomment following after infrastructure is ready
+            //services.AddScoped<ILibUserRepository, LibUserRepository>();
+            //services.AddScoped<IBorrowOrderRepository, BorrowOrderRepository>();
+            //services.AddScoped<IItemDescriptorRepository, ItemDescriptorRepository>();
+            //services.AddScoped<DataContext, DataContext>();
+
+            services.AddScoped<IDispatcher, Dispatcher>();           
+            services.AddApplicationServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +68,8 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseMiddleware<ExceptionHandler>(); //Handling all exceptions here
         }
     }
 }

@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application;
+using Application.Features.LibUser.Commands.CreateLibUser;
+using Application.Features.LibUser.Queries.GetAllLibUsers;
+using Application.Features.LibUser.Queries.GetLibUser;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,45 +13,47 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class LibUserController : ControllerBase
+    public class LibUserController : BaseController
     {
+        private IMapper mapper;
+        private IDispatcher dispatcher;
+
+        public LibUserController(IMapper mapper, IDispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+            this.mapper = mapper;
+        }
+
         // GET: api/<LibUserController>
         [HttpGet]
-        [Route("LibUser")]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetLibUsers()
         {
-            return new string[] { "value1", "value2" };
+            GetAllLibUsersQuery query = new GetAllLibUsersQuery();
+            var result = await this.dispatcher.Dispatch(query);
+            return FromResult(result);
         }
 
         // GET api/<LibUserController>/5
         [HttpGet]
         [Route("LibUser/{SSN}")]
-        public string Get(int id)
+        public async Task<IActionResult> GetLibUser(int ssn)
         {
-            return "value";
+            var result = await this.dispatcher.Dispatch(new GetLibUserQuery(ssn));
+            return FromResult(result);
         }
 
-        // POST api/<LibUserController>
         [HttpPost]
-        [Route("LibUser")]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> CreateLibUser(CreateLibUserRequest libUserRequest)
         {
-        }
-
-        // PUT api/<LibUserController>/5
-        [HttpPut]
-        [Route("LibUser/{SSN}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<LibUserController>/5
-        [HttpDelete]
-        [Route("LibUser/{SSN}")]
-        public void Delete(int id)
-        {
+            CreateLibUserCommand command = new CreateLibUserCommand(
+                libUserRequest.SSN,
+                libUserRequest.FName,
+                libUserRequest.Surname,
+                libUserRequest.Address,
+                libUserRequest.Phone,
+                libUserRequest.Campus);
+            var result = await this.dispatcher.Dispatch(command);
+            return FromResult(result);
         }
     }
 }

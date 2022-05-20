@@ -1,4 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application;
+using Application.Features.BorrowOrder.Commands.CreateBorrowOrder;
+using Application.Features.BorrowOrder.Commands.UpdateBorrowOrder;
+using Application.Features.BorrowOrder.Queries.GetAllBorrowOrders;
+using Application.Features.BorrowOrder.Queries.GetBorrowOrder;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,48 +14,53 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BorrowOrderController : ControllerBase
+    public class BorrowOrderController : BaseController
     {
-        // GET: api/<BorrowOrderController>
+        private IMapper mapper;
+        private IDispatcher dispatcher;
+
+        public BorrowOrderController(IMapper mapper, IDispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+            this.mapper = mapper;
+        }
+
         [HttpGet]
-        [Route("BorrowOrder")]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetBorrowOrders()
         {
-            return new string[] { "value1", "value2" };
+            GetAllBorrowOrdersQuery query = new GetAllBorrowOrdersQuery();
+            var result = await this.dispatcher.Dispatch(query);
+            return FromResult(result);
         }
 
-        // GET api/<BorrowOrderController>/5
-        //[HttpGet("{OrderId}")]
         [HttpGet]
-        [Route("BorrowOrder/{OrderId}")]
-        public string Get(int id)
+        [Route("{id}")]
+        public async Task<IActionResult> GetBorrowOrder(int id)
         {
-            return "value";
+            var result = await this.dispatcher.Dispatch(new GetBorrowOrderQuery(id));
+            return FromResult(result);
         }
 
-        // POST api/<BorrowOrderController>
-        [HttpPost]
-        [Route("BorrowOrder")]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<BorrowOrderController>/5
-        //[HttpPut("{OrderId}")]
         [HttpPut]
-        [Route("BorrowOrder/{OrderId}")]
-        public void Put(int id, [FromBody] string value)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateBorrowOrder(UpdateBorrowOrderRequest request)
         {
+            UpdateBorrowOrderCommand updateCommand =
+                new UpdateBorrowOrderCommand(request.OrderID , request.ReturnDate);
+            var result = await dispatcher.Dispatch(updateCommand);
+            return FromResult(result);
         }
 
-        // DELETE api/<BorrowOrderController>/5
-        //[HttpDelete("{OrderId}")]
-        [HttpDelete]
-        [Route("BorrowOrder/{OrderId}")]
-        public void Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> CreateBorrowOrder(CreateBorrowOrderRequest request)
         {
+            CreateBorrowOrderCommand command = new CreateBorrowOrderCommand(
+                request.BorrowDate,
+                request.Borrower,
+                request.Librarian,
+                request.Item);
+            var result = await this.dispatcher.Dispatch(command);
+            return FromResult(result);
         }
     }
 }
