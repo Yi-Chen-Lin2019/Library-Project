@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +10,17 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class BorrowOrderController : BaseController
     {
+        private IMapper mapper;
+        private IDispatcher dispatcher;
+
+        public BorrowOrderController(IMapper mapper, IDispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+            this.mapper = mapper;
+        }
+
         // GET: api/<BorrowOrderController>
         [HttpGet]
         [Route("BorrowOrder")]
