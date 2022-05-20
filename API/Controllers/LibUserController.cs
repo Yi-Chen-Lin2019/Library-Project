@@ -10,7 +10,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LibUserController : ControllerBase
+    public class LibUserController : BaseController
     {
         // GET: api/<LibUserController>
         [HttpGet]

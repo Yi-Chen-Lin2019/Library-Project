@@ -10,7 +10,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BorrowOrderController : ControllerBase
+    public class BorrowOrderController : BaseController
     {
         // GET: api/<BorrowOrderController>
         [HttpGet]
