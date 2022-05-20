@@ -4,8 +4,10 @@ using Application.Features.ItemDescriptor.Dto;
 using Application.Features.LibUser.Dto;
 using Application.Features.Reservation.Dto;
 using AutoMapper;
+using AutoMapper.Extensions.EnumMapping;
 using Domain.AggregateRoots;
 using Domain.Entities;
+using static Application.Features.LibUser.Dto.LibUserDto;
 
 namespace Application.Profiles
 {
@@ -24,6 +26,12 @@ namespace Application.Profiles
             CreateMap<Item, ItemDto>().ReverseMap();
 
             CreateMap<LibUser, LibUserDto>().ReverseMap();
+            CreateMap<MemberType, MemberTypeDto>()
+                .ConvertUsingEnumMapping()
+                .ReverseMap();
+            CreateMap<LibrarianType, LibrarianTypeDto>()
+                .ConvertUsingEnumMapping()
+                .ReverseMap();
             CreateMap<LibraryCard, LibraryCardDto>().ReverseMap();
 
             CreateMap<BorrowOrder, BorrowOrderDto>().ReverseMap();
