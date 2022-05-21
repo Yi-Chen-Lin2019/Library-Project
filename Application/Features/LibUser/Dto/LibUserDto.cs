@@ -15,9 +15,11 @@ namespace Application.Features.LibUser.Dto
         public String Campus { get; set; }
         public MemberTypeDto MemberType { get; set; }
         public LibrarianTypeDto LibrarianType { get; set; }
+        public List<LibraryCardDto> LibraryCards { get; private set; }
 
         public LibUserDto()
         {
+            LibraryCards = new List<LibraryCardDto>();
         }
 
         public LibUserDto(int SSN, String fName, String surname, string address, int phone, string campus,
@@ -34,6 +36,7 @@ namespace Application.Features.LibUser.Dto
             this.Campus = campus;
             this.MemberType = memberType;
             this.LibrarianType = librarianType;
+            this.LibraryCards = new List<LibraryCardDto>();
         }
 
         public enum MemberTypeDto

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Application.Features.ItemDescriptor.Dto
 {
     public abstract class ItemDescriptorDto
@@ -10,5 +12,6 @@ namespace Application.Features.ItemDescriptor.Dto
         public String Type { get; set; }
         public String Description { get; set; }
         public String Publisher { get; set; }
+        public List<ItemDto> Items { get; set; }
     }
 }
