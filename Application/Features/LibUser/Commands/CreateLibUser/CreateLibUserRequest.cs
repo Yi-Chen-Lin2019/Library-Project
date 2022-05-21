@@ -13,8 +13,8 @@ namespace Application.Features.LibUser.Commands.CreateLibUser
         public String Address { get; set; }
         public int Phone { get; set; }
         public String Campus { get; set; }
-        public MemberTypeDto MemberType { get; set; }
-        public LibrarianTypeDto LibrarianType { get; set; }
+        //public MemberTypeDto MemberType { get; set; }
+        //public LibrarianTypeDto LibrarianType { get; set; }
 
         public CreateLibUserRequest()
         {
