@@ -5,8 +5,8 @@ namespace Domain.Entities
 {
     public class Item : Entity
     {
-        public IItemDescriptor ItemDescriptor { get; set; }
         public int ItemID { get; set; }
+        public int ItemDescriptorID { get; set; }
         public Item()
         {
         }
