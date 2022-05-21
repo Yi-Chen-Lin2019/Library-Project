@@ -30,8 +30,8 @@ namespace Application.Features.LibUser.Commands.CreateLibUser
                 RuleFor(r => r.Address).NotEmpty().WithMessage(Errors.General.UnexpectedValue(nameof(Address)).Code);
                 RuleFor(r => r.Phone).NotEmpty().WithMessage(Errors.General.UnexpectedValue(nameof(Phone)).Code);
                 RuleFor(r => r.Campus).NotEmpty().WithMessage(Errors.General.UnexpectedValue(nameof(Campus)).Code);
-                RuleFor(r => r.MemberType).IsInEnum().WithMessage(Errors.General.UnexpectedValue(nameof(MemberType)).Code);
-                RuleFor(r => r.LibrarianType).IsInEnum().WithMessage(Errors.General.UnexpectedValue(nameof(LibrarianType)).Code);
+                //RuleFor(r => r.MemberType).IsInEnum().WithMessage(Errors.General.UnexpectedValue(nameof(MemberType)).Code);
+                //RuleFor(r => r.LibrarianType).IsInEnum().WithMessage(Errors.General.UnexpectedValue(nameof(LibrarianType)).Code);
             }
         }
     }

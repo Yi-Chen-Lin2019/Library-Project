@@ -51,9 +51,7 @@ namespace API.Controllers
                 libUserRequest.Surname,
                 libUserRequest.Address,
                 libUserRequest.Phone,
-                libUserRequest.Campus,
-                libUserRequest.MemberType,
-                libUserRequest.LibrarianType);
+                libUserRequest.Campus);
             var result = await this.dispatcher.Dispatch(command);
             return FromResult(result);
         }

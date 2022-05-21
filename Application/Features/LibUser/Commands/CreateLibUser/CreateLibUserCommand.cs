@@ -16,7 +16,7 @@ namespace Application.Features.LibUser.Commands.CreateLibUser
         public LibrarianTypeDto LibrarianType { get; set; }
 
         public CreateLibUserCommand(int ssn, String fName, String surname, String address, int phone,
-            string campus, MemberTypeDto memberType, LibrarianTypeDto librarianType)
+            string campus)
         {
             this.SSN = ssn;
             this.FName = fName;
@@ -24,8 +24,6 @@ namespace Application.Features.LibUser.Commands.CreateLibUser
             this.Address = address;
             this.Phone = phone;
             this.Campus = campus;
-            this.MemberType = memberType;
-            this.LibrarianType = librarianType;
         }
     }
 }
