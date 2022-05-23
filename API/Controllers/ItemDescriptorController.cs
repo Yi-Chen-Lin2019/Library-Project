@@ -37,9 +37,13 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMap(CreateItemDescriptorRequest itemDescriptorRequest)
+        public async Task<IActionResult> CreateItemDescriptor(CreateItemDescriptorRequest itemDescriptorRequest)
         {
-            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+            CreateItemDescriptorCommand command = null;
+            switch (itemDescriptorRequest.ItemDescriptorType)
+            {
+                case Domain.AggregateRoots.ItemDescriptorType.Map:
+                    command = new CreateItemDescriptorCommand(
                 itemDescriptorRequest.Year,
                 itemDescriptorRequest.Author,
                 itemDescriptorRequest.Title,
@@ -48,14 +52,9 @@ namespace API.Controllers
                 itemDescriptorRequest.BorrowType,
                 itemDescriptorRequest.ItemDescriptorType
                 );
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateArticle(CreateItemDescriptorRequest itemDescriptorRequest)
-        {
-            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+                    break;
+                case Domain.AggregateRoots.ItemDescriptorType.Article:
+                    command = new CreateItemDescriptorCommand(
                 itemDescriptorRequest.Year,
                 itemDescriptorRequest.Author,
                 itemDescriptorRequest.Title,
@@ -66,14 +65,9 @@ namespace API.Controllers
                 itemDescriptorRequest.Subject,
                 itemDescriptorRequest.ReleaseDate
                 );
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateBook(CreateItemDescriptorRequest itemDescriptorRequest)
-        {
-            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+                    break;
+                case Domain.AggregateRoots.ItemDescriptorType.Book:
+                    command = new CreateItemDescriptorCommand(
                 itemDescriptorRequest.Year,
                 itemDescriptorRequest.Author,
                 itemDescriptorRequest.Title,
@@ -85,9 +79,12 @@ namespace API.Controllers
                 itemDescriptorRequest.ISBN,
                 itemDescriptorRequest.Edition
                 );
+                    break;
+                default:
+                    break;
+            }
             var result = await this.dispatcher.Dispatch(command);
             return FromResult(result);
         }
-
     }
 }
