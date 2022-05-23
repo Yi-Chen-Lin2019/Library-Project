@@ -12,9 +12,7 @@
     <None Remove="EnsureThatCore" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AggregateRoots\" />
     <Folder Include="ValueObjects\" />
-    <Folder Include="Entities\" />
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>

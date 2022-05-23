@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.AggregateRoots;
 using Domain.Common;
 
 namespace Domain.Entities
@@ -7,8 +8,10 @@ namespace Domain.Entities
     {
         public IItemDescriptor ItemDescriptor { get; set; }
         public int ItemID { get; set; }
-        public Item()
+        public Item(int ItemID, IItemDescriptor ItemDescriptor)
         {
+            this.ItemID = ItemID;
+            this.ItemDescriptor = ItemDescriptor;
         }
     }
 }

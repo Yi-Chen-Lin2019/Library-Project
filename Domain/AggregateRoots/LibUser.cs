@@ -61,12 +61,12 @@ namespace Domain.AggregateRoots
 
     public enum MemberType
     {
-        Professor, Student
+        NULL, Professor, Student
     }
 
     public enum LibrarianType
     {
-        Admin, HeadLibrarian, Librarian
+        NULL, Admin, HeadLibrarian, Librarian, Intern
     }
 
 }

@@ -59,8 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
-    <Folder Include="Contracts\" />
-    <Folder Include="Contracts\Persistence\" />
     <Folder Include="Profiles\" />
     <Folder Include="Features\LibUser\" />
     <Folder Include="Features\LibUser\Commands\" />
