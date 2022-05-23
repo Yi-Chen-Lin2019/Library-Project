@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Application;
+using Application.Features.ItemDescriptor.Commands.CreateItemDescriptor;
 using Application.Features.ItemDescriptor.Queries.GetAllItemDescriptors;
 using Application.Features.ItemDescriptor.Queries.GetItemDescriptor;
 using AutoMapper;
@@ -34,5 +35,59 @@ namespace API.Controllers
             var result = await this.dispatcher.Dispatch(new GetItemDescriptorQuery(id));
             return FromResult(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateMap(CreateItemDescriptorRequest itemDescriptorRequest)
+        {
+            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+                itemDescriptorRequest.Year,
+                itemDescriptorRequest.Author,
+                itemDescriptorRequest.Title,
+                itemDescriptorRequest.Description,
+                itemDescriptorRequest.Publisher,
+                itemDescriptorRequest.BorrowType,
+                itemDescriptorRequest.ItemDescriptorType
+                );
+            var result = await this.dispatcher.Dispatch(command);
+            return FromResult(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateArticle(CreateItemDescriptorRequest itemDescriptorRequest)
+        {
+            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+                itemDescriptorRequest.Year,
+                itemDescriptorRequest.Author,
+                itemDescriptorRequest.Title,
+                itemDescriptorRequest.Description,
+                itemDescriptorRequest.Publisher,
+                itemDescriptorRequest.BorrowType,
+                itemDescriptorRequest.ItemDescriptorType,
+                itemDescriptorRequest.Subject,
+                itemDescriptorRequest.ReleaseDate
+                );
+            var result = await this.dispatcher.Dispatch(command);
+            return FromResult(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBook(CreateItemDescriptorRequest itemDescriptorRequest)
+        {
+            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+                itemDescriptorRequest.Year,
+                itemDescriptorRequest.Author,
+                itemDescriptorRequest.Title,
+                itemDescriptorRequest.Description,
+                itemDescriptorRequest.Publisher,
+                itemDescriptorRequest.BorrowType,
+                itemDescriptorRequest.ItemDescriptorType,
+                itemDescriptorRequest.Subject,
+                itemDescriptorRequest.ISBN,
+                itemDescriptorRequest.Edition
+                );
+            var result = await this.dispatcher.Dispatch(command);
+            return FromResult(result);
+        }
+
     }
 }

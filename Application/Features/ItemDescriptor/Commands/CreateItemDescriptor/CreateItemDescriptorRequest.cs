@@ -6,7 +6,7 @@ using FluentValidation;
 
 namespace Application.Features.ItemDescriptor.Commands.CreateItemDescriptor
 {
-    public class CreateItemDescriptorCommandRequest
+    public class CreateItemDescriptorRequest
     {
         public int Year { get; set; }
         public String Author { get; set; }
@@ -21,11 +21,11 @@ namespace Application.Features.ItemDescriptor.Commands.CreateItemDescriptor
         public int ISBN { get; set; }
         public int Edition { get; set; }
 
-        public CreateItemDescriptorCommandRequest()
+        public CreateItemDescriptorRequest()
         {
         }
 
-        public class Validator : AbstractValidator<CreateItemDescriptorCommandRequest>
+        public class Validator : AbstractValidator<CreateItemDescriptorRequest>
         {
             public Validator()
             {
