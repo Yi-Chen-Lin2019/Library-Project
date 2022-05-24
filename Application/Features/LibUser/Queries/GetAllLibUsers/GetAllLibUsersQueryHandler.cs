@@ -23,9 +23,9 @@ namespace Application.Features.LibUser.Queries.GetAllLibUsers
         public async Task<Result<CollectionResponseBase<LibUserDto>>> Handle(GetAllLibUsersQuery query, CancellationToken cancellationToken = default)
         {
             List<LibUserDto> result = new List<LibUserDto>();
-            List<Domain.AggregateRoots.LibUser> orders =
+            List<Domain.AggregateRoots.LibUser> users =
                 (List<Domain.AggregateRoots.LibUser>)await this.libUserRepository.GetAllAsync();
-            orders.ForEach(user => result.Add(mapper.Map<LibUserDto>(user)));
+            users.ForEach(user => result.Add((LibUserDto)mapper.Map(user, user.GetType(), typeof(LibUserDto))));
             return new CollectionResponseBase<LibUserDto>()
             {
                 Data = result

@@ -18,7 +18,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public void DeleteAsync(int id)
+        public Task<int> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -33,7 +33,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public void UpdateAsync(BorrowOrder entity)
+        public Task<int> UpdateAsync(BorrowOrder entity)
         {
             throw new NotImplementedException();
         }

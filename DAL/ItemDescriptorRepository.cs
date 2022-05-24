@@ -40,7 +40,7 @@ namespace DAL
             }
         }
 
-        public async void DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
             using (var conn = dataContext.CreateConnection())
             {
@@ -48,18 +48,19 @@ namespace DAL
                 if (type == "Book")
                 {
                     await conn.ExecuteAsync("DELETE FROM [BOOK] WHERE ID = @ID", new { ID = id });
-                    conn.ExecuteAsync("DELETE FROM [ItemDescriptor] WHERE ID = @ID", new { ID = id });
+                    return await conn.ExecuteAsync("DELETE FROM [ItemDescriptor] WHERE ID = @ID", new { ID = id });
                 }
                 else if (type == "Map")
                 {
                     await conn.ExecuteAsync("DELETE FROM [Map] WHERE ID = @ID", new { ID = id });
-                    conn.ExecuteAsync("DELETE FROM [ItemDescriptor] WHERE ID = @ID", new { ID = id });
+                    return await conn.ExecuteAsync("DELETE FROM [ItemDescriptor] WHERE ID = @ID", new { ID = id });
                 }
                 else if (type == "Article")
                 {
                     await conn.ExecuteAsync("DELETE FROM [Article] WHERE ID = @ID", new { ID = id });
-                    conn.ExecuteAsync("DELETE FROM [ItemDescriptor] WHERE ID = @ID", new { ID = id });
+                    return await conn.ExecuteAsync("DELETE FROM [ItemDescriptor] WHERE ID = @ID", new { ID = id });
                 }
+                return 0;
             }
         }
 
@@ -116,28 +117,29 @@ namespace DAL
             }
         }
 
-        public async void UpdateAsync(ItemDescriptor entity)
+        public async Task<int> UpdateAsync(ItemDescriptor entity)
         {
-            using (var connection = dataContext.CreateConnection())
+            using (var conn = dataContext.CreateConnection())
             {
                 if (entity is Book book)
                 {
-                    await connection.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
+                    await conn.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
                         new { Title = book.Title, Author = book.Author, Publisher = book.Publisher, Year = book.Year, Description = book.Description, bt = book.BorrowType.ToString(), ID = book.ID });
-                    await connection.ExecuteAsync("UPDATE [Book] SET ISBN = @ISBN, Subject = @Subject, Edition = @Edition WHERE ID = @ID", new { ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition, ID = book.ID });
+                    return await conn.ExecuteAsync("UPDATE [Book] SET ISBN = @ISBN, Subject = @Subject, Edition = @Edition WHERE ID = @ID", new { ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition, ID = book.ID });
                 }
                 else if (entity is Map map)
                 {
-                    await connection.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
-                       new { Title = map.Title, Author = map.Author, Publisher = map.Publisher, Year = map.Year, Description = map.Description, bt = map.BorrowType.ToString(), ID = map.ID });
+                    return await conn.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
+                        new { Title = map.Title, Author = map.Author, Publisher = map.Publisher, Year = map.Year, Description = map.Description, bt = map.BorrowType.ToString(), ID = map.ID });
                     //return await conn.ExecuteAsync("UPDATE [MAP] SET ISBN = @ISBN, Subject = @Subject, Edition = @Edition", new { ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition });
                 }
                 else if (entity is Article article)
                 {
-                    await connection.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
+                    await conn.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
                         new { Title = article.Title, Author = article.Author, Publisher = article.Publisher, Year = article.Year, Description = article.Description, bt = article.BorrowType.ToString(), ID = article.ID });
-                    await connection.ExecuteAsync("UPDATE [Article] SET Subject = @Subject, ReleaseDate = @ReleaseDate WHERE ID = @ID", new { Subject = article.Subject, ReleaseDate = article.ReleaseDate, ID = article.ID });
+                    return await conn.ExecuteAsync("UPDATE [Article] SET Subject = @Subject, ReleaseDate = @ReleaseDate WHERE ID = @ID", new { Subject = article.Subject, ReleaseDate = article.ReleaseDate, ID = article.ID });
                 }
+                return 0;
             }
         }
     }

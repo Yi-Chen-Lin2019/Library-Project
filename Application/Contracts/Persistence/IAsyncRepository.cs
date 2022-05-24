@@ -8,7 +8,7 @@ namespace Application.Contracts.Persistence
     {
         Task<Result<T>> GetByIdAsync(int id);
         Task<int> AddAsync(T entity);
-        void UpdateAsync(T entity);
-        void DeleteAsync(int id);
+        Task<int> UpdateAsync(T entity);
+        Task<int> DeleteAsync(int id);
     }
 }

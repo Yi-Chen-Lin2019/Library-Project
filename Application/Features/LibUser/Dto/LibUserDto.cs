@@ -25,10 +25,6 @@ namespace Application.Features.LibUser.Dto
         public LibUserDto(int SSN, String fName, String surname, string address, int phone, string campus,
             MemberTypeDto memberType, LibrarianTypeDto librarianType)
         {
-            Ensure.That(fName, nameof(fName)).IsNotNullOrEmpty();
-            Ensure.That(surname, nameof(surname)).IsNotNullOrEmpty();
-            Ensure.That(address, nameof(address)).IsNotNullOrEmpty();
-            Ensure.That(campus, nameof(campus)).IsNotNullOrEmpty();
             this.SSN = SSN;
             this.FName = fName;
             this.Surname = surname;
@@ -41,12 +37,12 @@ namespace Application.Features.LibUser.Dto
 
         public enum MemberTypeDto
         {
-            Professor, Student
+            NULL, Professor, Student
         }
 
         public enum LibrarianTypeDto
         {
-            Admin, HeadLibrarian, Librarian
+            NULL, Admin, HeadLibrarian, Librarian, Intern
         }
     }
 }
