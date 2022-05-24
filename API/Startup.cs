@@ -54,9 +54,7 @@ namespace API
             services.AddAutoMapper(typeof(Profile));
 
             services.AddMediatR(typeof(Startup).Assembly);
-            //services.AddMediatR(typeof(LibraryMediatREntrypoint).Assembly);
-            //services.AddMediatR(typeof(LibraryMediatRDALEntrypoint).Assembly);
-            
+
             services.AddApplicationServices();
         }
 

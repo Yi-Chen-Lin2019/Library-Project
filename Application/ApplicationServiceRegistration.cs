@@ -12,7 +12,7 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            //services.AddScoped<IDispatcher>(sp => new Dispatcher(sp.GetService<IMediator>()));
+            services.AddScoped<IDispatcher>(sp => new Dispatcher(sp.GetService<IMediator>()));
 
             return services;
         }

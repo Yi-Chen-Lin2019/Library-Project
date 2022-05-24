@@ -13,7 +13,7 @@ namespace API.Controllers
     public class ItemDescriptorController : BaseController
     {
         private IMapper mapper;
-        private IDispatcher dispatcher;
+        //private IDispatcher dispatcher;
         private IMediator mediator;
 
         public ItemDescriptorController(IMapper mapper, IMediator mediator)
@@ -36,7 +36,7 @@ namespace API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetItemDescriptor(int id)
         {
-            var result = await this.dispatcher.Dispatch(new GetItemDescriptorQuery(id));
+            var result = await this.mediator.Send(new GetItemDescriptorQuery(id));
             return FromResult(result);
         }
 
@@ -53,7 +53,7 @@ namespace API.Controllers
                 itemDescriptorRequest.BorrowType,
                 itemDescriptorRequest.ItemDescriptorType
                 );
-            var result = await this.dispatcher.Dispatch(command);
+            var result = await this.mediator.Send(command);
             return FromResult(result);
         }
 
@@ -72,7 +72,7 @@ namespace API.Controllers
                 itemDescriptorRequest.Subject,
                 itemDescriptorRequest.ReleaseDate
                 );
-            var result = await this.dispatcher.Dispatch(command);
+            var result = await this.mediator.Send(command);
             return FromResult(result);
         }
 
@@ -92,7 +92,7 @@ namespace API.Controllers
                 itemDescriptorRequest.ISBN,
                 itemDescriptorRequest.Edition
                 );
-            var result = await this.dispatcher.Dispatch(command);
+            var result = await this.mediator.Send(command);
             return FromResult(result);
         }
     }

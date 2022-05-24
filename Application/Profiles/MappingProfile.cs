@@ -26,7 +26,7 @@ namespace Application.Profiles
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Item, ItemDto>().ReverseMap();
 
-            CreateMap<BorrowType, BorrowType>()
+            CreateMap<Borrow_Type, BorrowTypeDto>()
                 .ConvertUsingEnumMapping()
                 .ReverseMap();
             CreateMap<ItemDescriptorType, ItemDescriptorType>()

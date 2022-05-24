@@ -21,8 +21,9 @@ namespace Application.Features.ItemDescriptor.Queries.GetItemDescriptor
 
         public async Task<Result<ItemDescriptorDto>> Handle(GetItemDescriptorQuery query, CancellationToken cancellationToken = default)
         {
-            var itemDescriptor = await this.itemDescriptorRepository.GetByIdAsync(query.ID);
-            var itemDescriptorDto = this.mapper.Map<ItemDescriptorDto>(itemDescriptor);
+            Domain.AggregateRoots.ItemDescriptor itemDescriptor = await this.itemDescriptorRepository.GetByIdAsync(query.ID);
+            ItemDescriptorDto itemDescriptorDto =
+                    (ItemDescriptorDto)mapper.Map(itemDescriptor, itemDescriptor.GetType(), typeof(ItemDescriptorDto));
             return Result.Ok(itemDescriptorDto);
         }
     }

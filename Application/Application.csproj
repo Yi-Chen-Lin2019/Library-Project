@@ -56,6 +56,7 @@
     <None Remove="Features\Reservation\Commands\DeleteReservation\" />
     <None Remove="FluentValidation" />
     <None Remove="AutoMapper.Extensions.EnumMapping" />
+    <None Remove="EnsureThatCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -103,12 +104,12 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.EnumMapping" Version="2.0.1" />
+    <PackageReference Include="EnsureThatCore" Version="1.0.0" />
   </ItemGroup>
 </Project>

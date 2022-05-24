@@ -10,7 +10,7 @@ namespace Application.Features.ItemDescriptor.Queries.GetItemDescriptor
 
         public GetItemDescriptorQuery(int id)
         {
-            Ensure.That(id, nameof(id)).IsGt(0);
+            //Ensure.That(id, nameof(id)).IsGt(0);
             this.ID = id;
         }
     }

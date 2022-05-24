@@ -36,7 +36,7 @@ namespace Library.API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetItemDescriptor(int id)
         {
-            var result = await this.dispatcher.Dispatch(new GetItemDescriptorQuery(id));
+            var result = await this.mediator.Send(new GetItemDescriptorQuery(id));
             return FromResult(result);
         }
 

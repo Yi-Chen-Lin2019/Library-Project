@@ -13,7 +13,11 @@ namespace Application.Features.ItemDescriptor.Dto
         public String Description { get; set; }
         public String Publisher { get; set; }
         public List<ItemDto> Items { get; set; }
-        public BorrowType BorrowType { get; set; }
-        public ItemDescriptorType ItemDescriptorType { get; set; }
+        public BorrowTypeDto Borrow_Type { get; set; }
+    }
+
+    public enum BorrowTypeDto
+    {
+        Stationary, Borrow, Wanted
     }
 }
