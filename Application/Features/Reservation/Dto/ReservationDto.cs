@@ -1,7 +1,6 @@
 ﻿using System;
 using Application.Features.ItemDescriptor.Dto;
 using Application.Features.LibUser.Dto;
-using EnsureThat;
 
 namespace Application.Features.Reservation.Dto
 {
@@ -19,7 +18,6 @@ namespace Application.Features.Reservation.Dto
 
         public ReservationDto(int reservationID, DateTime reserveDate, ItemDto item, LibUserDto borrower)
         {
-            Ensure.That(item, nameof(item)).IsNotNull();
             this.ReservationID = reservationID;
             this.ReserveDate = reserveDate;
             this.IsComplete = false;

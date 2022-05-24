@@ -142,5 +142,14 @@ namespace DAL
                 return 0;
             }
         }
+
+        public async Task<Result<Item>> GetItemByIdAsync(int id)
+        {
+            using (var connection = dataContext.CreateConnection())
+            {
+                String query = "SELECT [ItemID], [ItemDescriptor] AS ItemDescriptorID FROM [LibraryDatabase].[dbo].[Item] WHERE ItemID = @id";
+                return await connection.QuerySingleAsync<Item>(query, new { id });
+            }
+        }
     }
 }

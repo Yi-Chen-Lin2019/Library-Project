@@ -20,7 +20,6 @@ namespace Application.Features.BorrowOrder.Dto
 
         public BorrowOrderDto(int orderID, DateTime borrowDate, LibUserDto borrower, LibUserDto librarian, ItemDto item)
         {
-            Ensure.That(item, nameof(item)).IsNotNull();
             this.OrderID = orderID;
             this.BorrowDate = borrowDate;
             this.Borrower = borrower;
