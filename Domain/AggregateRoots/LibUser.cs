@@ -26,10 +26,6 @@ namespace Domain.AggregateRoots
         public LibUser(int SSN, String fName, String surname, string address, int phone, string campus,
             MemberType memberType, LibrarianType librarianType)
         {
-            Ensure.That(fName, nameof(fName)).IsNotNullOrEmpty();
-            Ensure.That(surname, nameof(surname)).IsNotNullOrEmpty();
-            Ensure.That(address, nameof(address)).IsNotNullOrEmpty();
-            Ensure.That(campus, nameof(campus)).IsNotNullOrEmpty();
             this.SSN = SSN;
             this.FName = fName;
             this.Surname = surname;
@@ -37,7 +33,6 @@ namespace Domain.AggregateRoots
             this.Campus = campus;
             this.MemberType = memberType;
             this.LibrarianType = librarianType;
-            this.LibraryCards = new List<LibraryCard>();
         }
 
         public LibUser(int ssn, string fName, string surname, string address, int phone, string campus)
@@ -52,7 +47,6 @@ namespace Domain.AggregateRoots
 
         public void AddLibraryCard(LibraryCard card)
         {
-            Ensure.That(card, nameof(card)).IsNotNull();
             this.LibraryCards.Add(card);
         }
 
@@ -61,12 +55,12 @@ namespace Domain.AggregateRoots
 
     public enum MemberType
     {
-        Professor, Student
+        Professor, Student, NULL
     }
 
     public enum LibrarianType
     {
-        Admin, HeadLibrarian, Librarian
+        Admin, HeadLibrarian, Librarian, NULL
     }
 
 }

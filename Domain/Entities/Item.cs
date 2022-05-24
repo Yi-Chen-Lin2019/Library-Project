@@ -7,8 +7,10 @@ namespace Domain.Entities
     {
         public int ItemID { get; set; }
         public int ItemDescriptorID { get; set; }
-        public Item()
+        public Item(int ItemID, int ItemDescriptor)
         {
+            this.ItemID = ItemID;
+            this.ItemDescriptorID = ItemDescriptor;
         }
     }
 }
