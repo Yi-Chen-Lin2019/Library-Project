@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application;
+﻿using Application;
 using Application.Contracts.Persistence;
+using AutoMapper;
 using DAL;
-using DAL.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Library.API
@@ -40,11 +33,27 @@ namespace Library.API
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+
+            services.AddScoped(typeof(ILibUserRepository), typeof(LibUserRepository));
+            services.AddScoped<ILibUserRepository, LibUserRepository>();
+
+            services.AddScoped(typeof(IBorrowOrderRepository), typeof(BorrowOrderRepository));
+            services.AddScoped<IBorrowOrderRepository, BorrowOrderRepository>();
+
             services.AddScoped(typeof(IItemDescriptorRepository), typeof(ItemDescriptorRepository));
             services.AddScoped<IItemDescriptorRepository, ItemDescriptorRepository>();
-            services.AddMediatR(typeof(Startup).Assembly);
+
+            services.AddScoped(typeof(IReservationRepository), typeof(ReservationRepository));
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+
             services.AddScoped<IDispatcher, Dispatcher>();
             services.AddScoped<DataContext, DataContext>();
+
+            services.AddAutoMapper(typeof(Profile));
+
+            services.AddMediatR(typeof(Startup).Assembly);
+
+            services.AddApplicationServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +64,8 @@ namespace Library.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
             app.UseHttpsRedirection();
