@@ -18,21 +18,6 @@ namespace Application.Features.LibUser.Commands.CreateLibUser
 
         public async Task<Result> Handle(CreateLibUserCommand command, CancellationToken cancellationToken = default)
         {
-            /*
-            MemberType memberType = command.MemberType.Equals(Dto.LibUserDto.MemberTypeDto.Professor) ? MemberType.Professor : MemberType.Student;
-            LibrarianType librarianType = LibrarianType.Librarian;
-            switch (command.LibrarianType)
-            {
-                case Dto.LibUserDto.LibrarianTypeDto.Admin:
-                    librarianType = LibrarianType.Admin;
-                    break;
-                case Dto.LibUserDto.LibrarianTypeDto.HeadLibrarian:
-                    librarianType = LibrarianType.HeadLibrarian;
-                    break;
-                default:
-                    break;
-            }
-            */
             var libUser = new Domain.AggregateRoots.LibUser(
                 command.SSN, command.FName, command.Surname, command.Address, command.Phone, command.Campus);
             var libUserId = await this.libUserRepository.AddAsync(libUser);

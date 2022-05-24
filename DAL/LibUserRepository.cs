@@ -28,7 +28,8 @@ namespace DAL
 
             using (var conn = dataContext.CreateConnection())
             {
-                id = await conn.QuerySingleAsync<int>("INSERT INTO [LibUser] OUTPUT inserted.id VALUES(@SSN, @FName, @Surname, @Address, @Phone, @Campus, @MemberType, @LibrarianType)",
+                id = await conn.QuerySingleAsync<int>
+                    ($"INSERT INTO [LibUser] (SSN, FName, Surname, Address, Phone, Campus, MemberType, LibrarianType) OUTPUT inserted.SSN VALUES (@SSN, @FName, @Surname, @Address, @Phone, @Campus, @MemberType, @LibrarianType)",
                         new { SSN = entity.SSN, Fname = entity.FName, Surname = entity.Surname, Address = entity.Address, Phone = entity.Phone, Campus = entity.Campus, MemberType = MemberType, LibrarianType = LibrarianType });
             }
 
