@@ -5,7 +5,7 @@ using Domain.Entities;
 
 namespace Domain.AggregateRoots
 {
-    public abstract class ItemDescriptor : AggregateRoot
+    public class ItemDescriptor : AggregateRoot
     {
         public int ID { get; set; }
         public int Year { get; set; }

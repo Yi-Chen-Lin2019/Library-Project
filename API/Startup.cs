@@ -4,7 +4,6 @@ using Application;
 using Application.Contracts.Persistence;
 using AutoMapper;
 using DAL;
-using DAL.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,16 +35,20 @@ namespace API
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-            //todo uncomment following after infrastructure is ready
+
             services.AddScoped(typeof(ILibUserRepository), typeof(LibUserRepository));
             services.AddScoped<ILibUserRepository, LibUserRepository>();
+
             services.AddScoped(typeof(IBorrowOrderRepository), typeof(BorrowOrderRepository));
             services.AddScoped<IBorrowOrderRepository, BorrowOrderRepository>();
+
             services.AddScoped(typeof(IItemDescriptorRepository), typeof(ItemDescriptorRepository));
             services.AddScoped<IItemDescriptorRepository, ItemDescriptorRepository>();
+
             services.AddScoped(typeof(IReservationRepository), typeof(ReservationRepository));
             services.AddScoped<IReservationRepository, ReservationRepository>();
 
+            services.AddScoped<IDispatcher, Dispatcher>();
             services.AddScoped<DataContext, DataContext>();
 
             services.AddAutoMapper(typeof(Profile));
@@ -53,7 +56,7 @@ namespace API
             services.AddMediatR(typeof(Startup).Assembly);
             //services.AddMediatR(typeof(LibraryMediatREntrypoint).Assembly);
             //services.AddMediatR(typeof(LibraryMediatRDALEntrypoint).Assembly);
-            services.AddScoped<IDispatcher, Dispatcher>();
+            
             services.AddApplicationServices();
         }
 

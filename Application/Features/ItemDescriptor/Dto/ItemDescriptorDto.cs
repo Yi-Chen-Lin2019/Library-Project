@@ -4,7 +4,7 @@ using Domain.AggregateRoots;
 
 namespace Application.Features.ItemDescriptor.Dto
 {
-    public abstract class ItemDescriptorDto
+    public class ItemDescriptorDto
     {
         public int ID { get; set; }
         public int Year { get; set; }

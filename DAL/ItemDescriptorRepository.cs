@@ -7,7 +7,7 @@ using Domain.AggregateRoots;
 using Domain.Common;
 using Domain.Entities;
 
-namespace DAL.Repositories
+namespace DAL
 {
     public class ItemDescriptorRepository : BaseRepository, IItemDescriptorRepository
     {
@@ -68,9 +68,22 @@ namespace DAL.Repositories
             using (var connection = dataContext.CreateConnection())
             {
                 List<ItemDescriptor> result = new List<ItemDescriptor>();
-                var query = $"select Id, title from {tableName}";
-                var itemDescriptors = await connection.QueryAsync<ItemDescriptor>(query);
-                //todo specialized subclasses 
+
+                // articles
+                var articlesQuery = $"SelectAllArticles";
+                List<Article> articles = (List<Article>)await connection.QueryAsync<Article>(articlesQuery);
+                articles.ForEach(it => result.Add(it));
+
+                // books
+                var booksQuery = $"SelectAllBooks";
+                List<Book> books = (List<Book>)await connection.QueryAsync<Book>(booksQuery);
+                books.ForEach(it => result.Add(it));
+
+                // maps
+                var mapsQuery = $"SelectAllMaps";
+                List<Map> maps = (List<Map>)await connection.QueryAsync<Map>(mapsQuery);
+                maps.ForEach(it => result.Add(it));
+
                 return result;
             }
         }

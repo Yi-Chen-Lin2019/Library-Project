@@ -16,14 +16,22 @@ namespace Application.Profiles
         public MappingProfile()
         {
             CreateMap<ItemDescriptor, ItemDescriptorDto>()
-                .Include<Article, ArticleDto>()
                 .Include<Map, MapDto>()
                 .Include<Book, BookDto>()
+                .Include<Article, ArticleDto>()
                 .ReverseMap();
+
             CreateMap<Article, ArticleDto>().ReverseMap();
             CreateMap<Map, MapDto>().ReverseMap();
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Item, ItemDto>().ReverseMap();
+
+            CreateMap<BorrowType, BorrowType>()
+                .ConvertUsingEnumMapping()
+                .ReverseMap();
+            CreateMap<ItemDescriptorType, ItemDescriptorType>()
+                .ConvertUsingEnumMapping()
+                .ReverseMap();
 
             CreateMap<LibUser, LibUserDto>().ReverseMap();
             CreateMap<MemberType, MemberTypeDto>()

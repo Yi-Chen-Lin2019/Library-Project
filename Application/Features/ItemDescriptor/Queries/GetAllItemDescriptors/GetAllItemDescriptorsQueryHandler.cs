@@ -6,6 +6,7 @@ using Application.Contracts.Persistence;
 using Application.Features.ItemDescriptor.Dto;
 using AutoMapper;
 using Domain.Common;
+using Domain.Entities;
 
 namespace Application.Features.ItemDescriptor.Queries.GetAllItemDescriptors
 {
@@ -23,25 +24,14 @@ namespace Application.Features.ItemDescriptor.Queries.GetAllItemDescriptors
         public async Task<Result<CollectionResponseBase<ItemDescriptorDto>>> Handle(GetAllItemDescriptorsQuery query, CancellationToken cancellationToken = default)
         {
             List<ItemDescriptorDto> result = new List<ItemDescriptorDto>();
-            var itemDescriptors = await this.itemDescriptorRepository.GetAllAsync();
+            List<Domain.AggregateRoots.ItemDescriptor> itemDescriptors =
+                (List<Domain.AggregateRoots.ItemDescriptor>)await this.itemDescriptorRepository.GetAllAsync();
             foreach (var itemDescriptor in itemDescriptors)
             {
-                ItemDescriptorDto itemDescriptorDto = null;
-                switch (itemDescriptor.ItemDescriptorType)
-                {
-                    case Domain.AggregateRoots.ItemDescriptorType.Article:
-                        itemDescriptorDto = this.mapper.Map<ArticleDto>(itemDescriptor);
-                        break;
-                    case Domain.AggregateRoots.ItemDescriptorType.Map:
-                        itemDescriptorDto = this.mapper.Map<MapDto>(itemDescriptor);
-                        break;
-                    case Domain.AggregateRoots.ItemDescriptorType.Book:
-                        itemDescriptorDto = this.mapper.Map<BookDto>(itemDescriptor);
-                        break;
-                    default:
-                        break;
-                }
+                ItemDescriptorDto itemDescriptorDto =
+                    (ItemDescriptorDto)mapper.Map(itemDescriptor, itemDescriptor.GetType(), typeof(ItemDescriptorDto));
                 result.Add(itemDescriptorDto);
+
             }
             return new CollectionResponseBase<ItemDescriptorDto>()
             {

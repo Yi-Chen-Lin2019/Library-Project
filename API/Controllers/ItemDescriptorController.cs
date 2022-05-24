@@ -5,6 +5,7 @@ using Application.Features.ItemDescriptor.Commands.CreateItemDescriptor;
 using Application.Features.ItemDescriptor.Queries.GetAllItemDescriptors;
 using Application.Features.ItemDescriptor.Queries.GetItemDescriptor;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,18 +14,21 @@ namespace API.Controllers
     {
         private IMapper mapper;
         private IDispatcher dispatcher;
+        private IMediator mediator;
 
-        public ItemDescriptorController(IMapper mapper, IDispatcher dispatcher)
+        public ItemDescriptorController(IMapper mapper, IMediator mediator)
         {
-            this.dispatcher = dispatcher;
+            //this.dispatcher = dispatcher;
             this.mapper = mapper;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetItemDescriptors()
         {
             GetAllItemDescriptorsQuery query = new GetAllItemDescriptorsQuery();
-            var result = await this.dispatcher.Dispatch(query);
+            //var result = await this.dispatcher.Dispatch(query);
+            var result = await this.mediator.Send(query);
             return FromResult(result);
         }
 

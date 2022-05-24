@@ -8,10 +8,6 @@ namespace Application.Features.ItemDescriptor.Queries.GetItemDescriptor
     {
         public int ID { get; private set; }
 
-        public GetItemDescriptorQuery()
-        {
-        }
-
         public GetItemDescriptorQuery(int id)
         {
             Ensure.That(id, nameof(id)).IsGt(0);
