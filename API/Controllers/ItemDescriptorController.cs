@@ -13,22 +13,19 @@ namespace API.Controllers
     public class ItemDescriptorController : BaseController
     {
         private IMapper mapper;
-        //private IDispatcher dispatcher;
-        private IMediator mediator;
+        private IDispatcher dispatcher;
 
-        public ItemDescriptorController(IMapper mapper, IMediator mediator)
+        public ItemDescriptorController(IMapper mapper, IDispatcher dispatcher)
         {
-            //this.dispatcher = dispatcher;
+            this.dispatcher = dispatcher;
             this.mapper = mapper;
-            this.mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetItemDescriptors()
         {
             GetAllItemDescriptorsQuery query = new GetAllItemDescriptorsQuery();
-            //var result = await this.dispatcher.Dispatch(query);
-            var result = await this.mediator.Send(query);
+            var result = await this.dispatcher.Dispatch(query);
             return FromResult(result);
         }
 
@@ -36,7 +33,7 @@ namespace API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetItemDescriptor(int id)
         {
-            var result = await this.mediator.Send(new GetItemDescriptorQuery(id));
+            var result = await this.dispatcher.Dispatch(new GetItemDescriptorQuery(id));
             return FromResult(result);
         }
 
@@ -53,7 +50,7 @@ namespace API.Controllers
                 itemDescriptorRequest.BorrowType,
                 itemDescriptorRequest.ItemDescriptorType
                 );
-            var result = await this.mediator.Send(command);
+            var result = await this.dispatcher.Dispatch(command);
             return FromResult(result);
         }
 
@@ -72,7 +69,7 @@ namespace API.Controllers
                 itemDescriptorRequest.Subject,
                 itemDescriptorRequest.ReleaseDate
                 );
-            var result = await this.mediator.Send(command);
+            var result = await this.dispatcher.Dispatch(command);
             return FromResult(result);
         }
 
@@ -92,7 +89,7 @@ namespace API.Controllers
                 itemDescriptorRequest.ISBN,
                 itemDescriptorRequest.Edition
                 );
-            var result = await this.mediator.Send(command);
+            var result = await this.dispatcher.Dispatch(command);
             return FromResult(result);
         }
     }
