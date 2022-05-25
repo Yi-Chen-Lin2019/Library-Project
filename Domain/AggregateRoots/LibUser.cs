@@ -26,10 +26,6 @@ namespace Domain.AggregateRoots
         public LibUser(int SSN, String fName, String surname, string address, int phone, string campus,
             MemberType memberType, LibrarianType librarianType)
         {
-            Ensure.That(fName, nameof(fName)).IsNotNullOrEmpty();
-            Ensure.That(surname, nameof(surname)).IsNotNullOrEmpty();
-            Ensure.That(address, nameof(address)).IsNotNullOrEmpty();
-            Ensure.That(campus, nameof(campus)).IsNotNullOrEmpty();
             this.SSN = SSN;
             this.FName = fName;
             this.Surname = surname;
@@ -52,7 +48,6 @@ namespace Domain.AggregateRoots
 
         public void AddLibraryCard(LibraryCard card)
         {
-            Ensure.That(card, nameof(card)).IsNotNull();
             this.LibraryCards.Add(card);
         }
 

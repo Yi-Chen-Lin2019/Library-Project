@@ -11,5 +11,22 @@ namespace Domain.Entities
         public Item()
         {
         }
+
+        public Item(int ItemID, ItemDescriptor ItemDescriptor)
+        {
+            this.ItemID = ItemID;
+            this.ItemDescriptor = ItemDescriptor;
+        }
+
+        public Item(int ItemId, int ItemDescriptorId)
+        {
+            this.ItemID = ItemId;
+            this.ItemDescriptor = new ItemDescriptor() { ID = ItemDescriptorId };
+        }
+
+        public Item(int ItemId)
+        {
+            this.ItemID = ItemId;
+        }
     }
 }

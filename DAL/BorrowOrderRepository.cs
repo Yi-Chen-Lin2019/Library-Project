@@ -50,7 +50,7 @@ namespace DAL
         {
             using (var conn = dataContext.CreateConnection())
             {
-                return await conn.ExecuteAsync("INSERT [BorrowOrder] OUTPUT inserted.id VALUES(@BorrowDate, NULL, @BorrowerSSN, @LibrarianSSN, @ItemID)",
+                return await conn.ExecuteAsync("INSERT [BorrowOrder] OUTPUT inserted.OrderId VALUES(@BorrowDate, NULL, @BorrowerSSN, @LibrarianSSN, @ItemID)",
                     new { BorrowDate = entity.BorrowDate, BorrowerSSN = entity.Borrower.SSN, LibrarianSSN = entity.Librarian.SSN, ItemID = entity.Item.ItemID });
             }
         }

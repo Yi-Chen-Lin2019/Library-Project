@@ -13,6 +13,11 @@ namespace DAL
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("DefaultConnection");
         }
+
+        public DataContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
         public IDbConnection CreateConnection()
             => new System.Data.SqlClient.SqlConnection(_connectionString);
     }

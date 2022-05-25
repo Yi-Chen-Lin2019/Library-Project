@@ -28,7 +28,7 @@ namespace Application.Features.ItemDescriptor.Commands.CreateItemDescriptor
                         Title = command.Title,
                         Description = command.Description,
                         Publisher = command.Publisher,
-                        BorrowType = command.BorrowType,
+                        Borrow_Type = command.Borrow_Type,
                         ItemDescriptorType = command.ItemDescriptorType,
                         Subject = command.Subject,
                         ReleaseDate = command.ReleaseDate
@@ -42,7 +42,7 @@ namespace Application.Features.ItemDescriptor.Commands.CreateItemDescriptor
                         Title = command.Title,
                         Description = command.Description,
                         Publisher = command.Publisher,
-                        BorrowType = command.BorrowType,
+                        Borrow_Type = command.Borrow_Type,
                         ItemDescriptorType = command.ItemDescriptorType,
                         ISBN = command.ISBN,
                         Subject = command.Subject,
@@ -56,7 +56,7 @@ namespace Application.Features.ItemDescriptor.Commands.CreateItemDescriptor
                         Title = command.Title,
                         Description = command.Description,
                         Publisher = command.Publisher,
-                        BorrowType = command.BorrowType,
+                        Borrow_Type = command.Borrow_Type,
                         ItemDescriptorType = command.ItemDescriptorType
                     };
                     break;

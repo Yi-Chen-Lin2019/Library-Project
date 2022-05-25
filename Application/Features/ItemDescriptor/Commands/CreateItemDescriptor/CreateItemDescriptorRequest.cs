@@ -14,7 +14,7 @@ namespace Application.Features.ItemDescriptor.Commands.CreateItemDescriptor
         public String Description { get; set; }
         public String Publisher { get; set; }
         public List<Dto.ItemDto> Items { get; set; }
-        public Borrow_Type BorrowType { get; set; }
+        public BorrowType BorrowType { get; set; }
         public ItemDescriptorType ItemDescriptorType { get; set; }
         public String Subject { get; set; }
         public DateTime ReleaseDate { get; set; }

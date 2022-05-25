@@ -15,28 +15,30 @@ namespace DAL
 
         public async Task<int> AddAsync(ItemDescriptor entity)
         {
-            int id = -1;
             using (var conn = dataContext.CreateConnection())
             {
                 if (entity is Book book)
                 {
-                    await conn.QuerySingleAsync<int>($"INSERT INTO {tableName} OUTPUT inserted.id VALUES(@Title, @Author, @Publisher, @Year, @Description, @Borrow_Type, @ID_Type)",
-                        new { Title = book.Title, Author = book.Author, Publisher = book.Publisher, Year = book.Year, Description = book.Description, Borrow_Type = book.BorrowType.ToString(), ID_Type = "Book" });
-                    id = await conn.ExecuteAsync("INSERT INTO [Book] VALUES(@ID, @ISBN, @Subject, @Edition)", new { ID = id, ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition });
+                    int id = await conn.QuerySingleAsync<int>("INSERT INTO [ItemDescriptor] OUTPUT inserted.id VALUES(@Title, @Author, @Publisher, @Year, @Description, @Borrow_Type, @ID_Type)",
+                        new { Title = book.Title, Author = book.Author, Publisher = book.Publisher, Year = book.Year, Description = book.Description, Borrow_Type = book.Borrow_Type.ToString(), ID_Type = "Book" });
+                    await conn.ExecuteAsync("INSERT INTO [Book] VALUES(@ID, @ISBN, @Subject, @Edition)", new { ID = id, ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition });
+                    return id;
                 }
                 else if (entity is Map map)
                 {
-                    await conn.QuerySingleAsync<int>($"INSERT INTO {tableName} OUTPUT inserted.id VALUES(@Title, @Author, @Publisher, @Year, @Description, @Borrow_Type, @ID_Type)",
-                        new { Title = map.Title, Author = map.Author, Publisher = map.Publisher, Year = map.Year, Description = map.Description, Borrow_Type = map.BorrowType.ToString(), ID_Type = "Map" });
-                    id = await conn.ExecuteAsync("INSERT INTO [Map] VALUES(@ID)", new { ID = id });
+                    int id = await conn.QuerySingleAsync<int>("INSERT INTO [ItemDescriptor] OUTPUT inserted.id VALUES(@Title, @Author, @Publisher, @Year, @Description, @Borrow_Type, @ID_Type)",
+                        new { Title = map.Title, Author = map.Author, Publisher = map.Publisher, Year = map.Year, Description = map.Description, Borrow_Type = map.Borrow_Type.ToString(), ID_Type = "Map" });
+                    await conn.ExecuteAsync("INSERT INTO [Map] VALUES(@ID)", new { ID = id });
+                    return id;
                 }
                 else if (entity is Article article)
                 {
-                    await conn.QuerySingleAsync<int>($"INSERT INTO {tableName} OUTPUT inserted.id VALUES(@Title, @Author, @Publisher, @Year, @Description, @Borrow_Type, @ID_Type)",
-                        new { Title = article.Title, Author = article.Author, Publisher = article.Publisher, Year = article.Year, Description = article.Description, Borrow_Type = article.BorrowType.ToString(), ID_Type = "Article" });
-                    id = await conn.ExecuteAsync("INSERT INTO [Article] VALUES(@ID, @Subject, @ReleaseDate)", new { ID = id, Subject = article.Subject, ReleaseDate = article.ReleaseDate });
+                    int id = await conn.QuerySingleAsync<int>("INSERT INTO [ItemDescriptor] OUTPUT inserted.id VALUES(@Title, @Author, @Publisher, @Year, @Description, @Borrow_Type, @ID_Type)",
+                        new { Title = article.Title, Author = article.Author, Publisher = article.Publisher, Year = article.Year, Description = article.Description, Borrow_Type = article.Borrow_Type.ToString(), ID_Type = "Article" });
+                    await conn.ExecuteAsync("INSERT INTO [Article] VALUES(@ID, @Subject, @ReleaseDate)", new { ID = id, Subject = article.Subject, ReleaseDate = article.ReleaseDate });
+                    return id;
                 }
-                return id;
+                return 0;
             }
         }
 
@@ -124,19 +126,19 @@ namespace DAL
                 if (entity is Book book)
                 {
                     await conn.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
-                        new { Title = book.Title, Author = book.Author, Publisher = book.Publisher, Year = book.Year, Description = book.Description, bt = book.BorrowType.ToString(), ID = book.ID });
+                        new { Title = book.Title, Author = book.Author, Publisher = book.Publisher, Year = book.Year, Description = book.Description, bt = book.Borrow_Type.ToString(), ID = book.ID });
                     return await conn.ExecuteAsync("UPDATE [Book] SET ISBN = @ISBN, Subject = @Subject, Edition = @Edition WHERE ID = @ID", new { ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition, ID = book.ID });
                 }
                 else if (entity is Map map)
                 {
                     return await conn.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
-                        new { Title = map.Title, Author = map.Author, Publisher = map.Publisher, Year = map.Year, Description = map.Description, bt = map.BorrowType.ToString(), ID = map.ID });
+                        new { Title = map.Title, Author = map.Author, Publisher = map.Publisher, Year = map.Year, Description = map.Description, bt = map.Borrow_Type.ToString(), ID = map.ID });
                     //return await conn.ExecuteAsync("UPDATE [MAP] SET ISBN = @ISBN, Subject = @Subject, Edition = @Edition", new { ISBN = book.ISBN, Subject = book.Subject, Edition = book.Edition });
                 }
                 else if (entity is Article article)
                 {
                     await conn.ExecuteAsync("UPDATE [ItemDescriptor] SET Title = @Title, Author = @Author, Publisher = @Publisher, Year = @Year, Description = @Description, Borrow_Type = @bt WHERE ID = @ID",
-                        new { Title = article.Title, Author = article.Author, Publisher = article.Publisher, Year = article.Year, Description = article.Description, bt = article.BorrowType.ToString(), ID = article.ID });
+                        new { Title = article.Title, Author = article.Author, Publisher = article.Publisher, Year = article.Year, Description = article.Description, bt = article.Borrow_Type.ToString(), ID = article.ID });
                     return await conn.ExecuteAsync("UPDATE [Article] SET Subject = @Subject, ReleaseDate = @ReleaseDate WHERE ID = @ID", new { Subject = article.Subject, ReleaseDate = article.ReleaseDate, ID = article.ID });
                 }
                 return 0;
