@@ -1,4 +1,6 @@
 ﻿using System;
+using Domain.ValueObjects;
+
 namespace Domain.Common
 {
     public class Result

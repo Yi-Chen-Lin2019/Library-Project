@@ -9,16 +9,107 @@
     <None Remove="Contracts\" />
     <None Remove="Contracts\Persistence\" />
     <None Remove="Profiles\" />
-    <None Remove="Features\Commands\" />
+    <None Remove="Features\LibUser\" />
+    <None Remove="Features\LibUser\Commands\" />
+    <None Remove="Features\LibUser\Dtos\" />
+    <None Remove="Features\LibUser\Queries\" />
+    <None Remove="Features\ItemDescriptor\" />
+    <None Remove="Features\Reservation\" />
+    <None Remove="Features\BorrowOrder\" />
+    <None Remove="Features\BorrowOrder\Commands\" />
+    <None Remove="Features\BorrowOrder\Dto\" />
+    <None Remove="Features\BorrowOrder\Queries\" />
+    <None Remove="Features\ItemDescriptor\Commands\" />
+    <None Remove="Features\ItemDescriptor\Dto\" />
+    <None Remove="Features\ItemDescriptor\Queries\" />
+    <None Remove="Features\Reservation\Commands\" />
+    <None Remove="Features\Reservation\Dto\" />
+    <None Remove="Features\Reservation\Queries\" />
+    <None Remove="Features\ItemDescriptor\Queries\GetItemDescriptor\" />
+    <None Remove="Features\ItemDescriptor\Queries\GetAllItemDescriptor\" />
+    <None Remove="MediatR" />
+    <None Remove="AutoMapper" />
+    <None Remove="Features\ItemDescriptor\.DS_Store" />
+    <None Remove="Features\BorrowOrder\.DS_Store" />
+    <None Remove="Features\LibUser\.DS_Store" />
+    <None Remove="Features\Reservation\.DS_Store" />
+    <None Remove="Features\BorrowOrder\Queries\GetBorrowOrder\" />
+    <None Remove="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
+    <None Remove="Features\LibUser\Queries\GetLibUser\" />
+    <None Remove="Features\LibUser\Queries\GetAllLibUsers\" />
+    <None Remove="Features\Reservation\Queries\GetReservation\" />
+    <None Remove="Features\Reservation\Queries\GetAllReservations\" />
+    <None Remove="Microsoft.Extensions.DependencyInjection" />
+    <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Features\BorrowOrder\Commands\CreateBorrowOder\" />
+    <None Remove="Features\BorrowOrder\Commands\UpdateBorrowOrder\" />
+    <None Remove="Features\BorrowOrder\Commands\DeleteBorrowOrder\" />
+    <None Remove="Features\ItemDescriptor\Commands\CreateItemDescriptor\" />
+    <None Remove="Features\ItemDescriptor\Commands\DeleteItemDescriptor\" />
+    <None Remove="Features\ItemDescriptor\Commands\UpdateDescriptor\" />
+    <None Remove="Features\LibUser\Commands\CreateLibUser\" />
+    <None Remove="Features\LibUser\Commands\DeleteLibUser\" />
+    <None Remove="Features\LibUser\Commands\UpdateLibUser\" />
+    <None Remove="Features\Reservation\Commands\CreateReservation\" />
+    <None Remove="Features\Reservation\Commands\UpdateReservation\" />
+    <None Remove="Features\Reservation\Commands\DeleteReservation\" />
+    <None Remove="FluentValidation" />
+    <None Remove="AutoMapper.Extensions.EnumMapping" />
+    <None Remove="EnsureThatCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
     <Folder Include="Contracts\" />
     <Folder Include="Contracts\Persistence\" />
     <Folder Include="Profiles\" />
-    <Folder Include="Features\Commands\" />
+    <Folder Include="Features\LibUser\" />
+    <Folder Include="Features\LibUser\Commands\" />
+    <Folder Include="Features\LibUser\Dto\" />
+    <Folder Include="Features\LibUser\Queries\" />
+    <Folder Include="Features\ItemDescriptor\" />
+    <Folder Include="Features\Reservation\" />
+    <Folder Include="Features\BorrowOrder\" />
+    <Folder Include="Features\BorrowOrder\Commands\" />
+    <Folder Include="Features\BorrowOrder\Dto\" />
+    <Folder Include="Features\BorrowOrder\Queries\" />
+    <Folder Include="Features\ItemDescriptor\Commands\" />
+    <Folder Include="Features\ItemDescriptor\Dto\" />
+    <Folder Include="Features\ItemDescriptor\Queries\" />
+    <Folder Include="Features\Reservation\Commands\" />
+    <Folder Include="Features\Reservation\Dto\" />
+    <Folder Include="Features\Reservation\Queries\" />
+    <Folder Include="Features\ItemDescriptor\Queries\GetItemDescriptor\" />
+    <Folder Include="Features\ItemDescriptor\Queries\GetAllItemDescriptors\" />
+    <Folder Include="Features\BorrowOrder\Queries\GetBorrowOrder\" />
+    <Folder Include="Features\BorrowOrder\Queries\GetAllBorrowOrders\" />
+    <Folder Include="Features\LibUser\Queries\GetLibUser\" />
+    <Folder Include="Features\LibUser\Queries\GetAllLibUsers\" />
+    <Folder Include="Features\Reservation\Queries\GetReservation\" />
+    <Folder Include="Features\Reservation\Queries\GetAllReservations\" />
+    <Folder Include="Features\BorrowOrder\Commands\CreateBorrowOder\" />
+    <Folder Include="Features\BorrowOrder\Commands\UpdateBorrowOrder\" />
+    <Folder Include="Features\BorrowOrder\Commands\DeleteBorrowOrder\" />
+    <Folder Include="Features\ItemDescriptor\Commands\CreateItemDescriptor\" />
+    <Folder Include="Features\ItemDescriptor\Commands\DeleteItemDescriptor\" />
+    <Folder Include="Features\ItemDescriptor\Commands\UpdateDescriptor\" />
+    <Folder Include="Features\LibUser\Commands\CreateLibUser\" />
+    <Folder Include="Features\LibUser\Commands\DeleteLibUser\" />
+    <Folder Include="Features\LibUser\Commands\UpdateLibUser\" />
+    <Folder Include="Features\Reservation\Commands\CreateReservation\" />
+    <Folder Include="Features\Reservation\Commands\UpdateReservation\" />
+    <Folder Include="Features\Reservation\Commands\DeleteReservation\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.EnumMapping" Version="2.0.1" />
+    <PackageReference Include="EnsureThatCore" Version="1.0.0" />
   </ItemGroup>
 </Project>

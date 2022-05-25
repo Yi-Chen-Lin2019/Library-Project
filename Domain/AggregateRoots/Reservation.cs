@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Common;
 using Domain.Entities;
+using EnsureThat;
 
 namespace Domain.AggregateRoots
 {
@@ -14,6 +15,16 @@ namespace Domain.AggregateRoots
 
         public Reservation()
         {
+        }
+
+        public Reservation(int reservationID, DateTime reserveDate, Item item, LibUser borrower)
+        {
+            Ensure.That(item, nameof(item)).IsNotNull();
+            this.ReservationID = reservationID;
+            this.ReserveDate = reserveDate;
+            this.IsComplete = false;
+            this.Item = item;
+            this.Borrower = borrower;
         }
     }
 }

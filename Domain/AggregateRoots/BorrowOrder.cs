@@ -1,6 +1,7 @@
 ﻿using System;
 using Domain.Common;
 using Domain.Entities;
+using EnsureThat;
 
 namespace Domain.AggregateRoots
 {
@@ -15,6 +16,29 @@ namespace Domain.AggregateRoots
 
         public BorrowOrder()
         {
+        }
+
+        public BorrowOrder(int orderID, DateTime borrowDate, LibUser borrower, LibUser librarian, Item item)
+        {
+            this.OrderID = orderID;
+            this.BorrowDate = borrowDate;
+            this.Borrower = borrower;
+            this.Librarian = librarian;
+            this.Item = item;
+        }
+
+        public BorrowOrder(DateTime borrowDate, LibUser borrower, LibUser librarian, Item item)
+        {
+            this.BorrowDate = borrowDate;
+            this.Borrower = borrower;
+            this.Librarian = librarian;
+            this.Item = item;
+        }
+
+        public BorrowOrder(int orderID, DateTime returnDate)
+        {
+            OrderID = orderID;
+            ReturnDate = returnDate;
         }
     }
 }
