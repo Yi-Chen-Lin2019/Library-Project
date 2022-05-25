@@ -13,7 +13,6 @@ namespace Application.Features.LibUser.Queries.GetLibUser
 
         public GetLibUserQuery(int ssn)
         {
-            Ensure.That(ssn, nameof(ssn)).IsGt(0);
             this.SSN = ssn;
         }
     }

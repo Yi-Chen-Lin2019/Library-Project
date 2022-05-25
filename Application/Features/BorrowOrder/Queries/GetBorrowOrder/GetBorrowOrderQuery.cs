@@ -14,7 +14,6 @@ namespace Application.Features.BorrowOrder.Queries.GetBorrowOrder
 
         public GetBorrowOrderQuery(int orderId)
         {
-            Ensure.That(orderId, nameof(orderId)).IsGt(0);
             this.OrderID = orderId;
         }
 
