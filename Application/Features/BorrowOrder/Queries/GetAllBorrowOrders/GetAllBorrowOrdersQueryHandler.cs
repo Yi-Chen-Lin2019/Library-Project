@@ -25,7 +25,7 @@ namespace Application.Features.BorrowOrder.Queries.GetAllBorrowOrders
             List<BorrowOrderDto> result = new List<BorrowOrderDto>();
             List<Domain.AggregateRoots.BorrowOrder> orders =
                 (List<Domain.AggregateRoots.BorrowOrder>)await this.borrowOrderRepository.GetAllAsync();            
-            orders.ForEach(order => result.Add(mapper.Map<BorrowOrderDto>(order)));
+            orders.ForEach(order => result.Add((BorrowOrderDto)mapper.Map(order, order.GetType(), typeof(BorrowOrderDto))));
             return new CollectionResponseBase<BorrowOrderDto>()
             {
                 Data = result

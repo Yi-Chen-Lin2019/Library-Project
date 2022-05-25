@@ -35,7 +35,7 @@ namespace API.Controllers
 
         // GET api/<LibUserController>/5
         [HttpGet]
-        [Route("LibUser/{SSN}")]
+        [Route("{SSN}")]
         public async Task<IActionResult> GetLibUser(int ssn)
         {
             var result = await this.dispatcher.Dispatch(new GetLibUserQuery(ssn));

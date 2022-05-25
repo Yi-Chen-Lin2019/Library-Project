@@ -21,8 +21,8 @@ namespace Application.Features.LibUser.Queries.GetLibUser
 
         public async Task<Result<LibUserDto>> Handle(GetLibUserQuery query, CancellationToken cancellationToken = default)
         {
-            var libUser = await this.libUserRepository.GetByIdAsync(query.SSN);
-            var libUserDto = this.mapper.Map<LibUserDto>(libUser);
+            Domain.AggregateRoots.LibUser libUser = await this.libUserRepository.GetByIdAsync(query.SSN);
+            LibUserDto libUserDto = (LibUserDto)mapper.Map(libUser, libUser.GetType(), typeof(LibUserDto));
             return Result.Ok(libUserDto);
         }
     }

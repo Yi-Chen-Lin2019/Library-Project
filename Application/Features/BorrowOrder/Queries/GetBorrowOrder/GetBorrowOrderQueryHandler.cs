@@ -21,8 +21,8 @@ namespace Application.Features.BorrowOrder.Queries.GetBorrowOrder
 
         public async Task<Result<BorrowOrderDto>> Handle(GetBorrowOrderQuery query, CancellationToken cancellationToken = default)
         {
-            var borrowOrder = await this.borrowOrderRepository.GetByIdAsync(query.OrderID);
-            var borrowOrderDto = this.mapper.Map<BorrowOrderDto>(borrowOrder);
+            Domain.AggregateRoots.BorrowOrder borrowOrder = await this.borrowOrderRepository.GetByIdAsync(query.OrderID);
+            BorrowOrderDto borrowOrderDto = (BorrowOrderDto)this.mapper.Map(borrowOrder, borrowOrder.GetType(), typeof(BorrowOrderDto));
             return Result.Ok(borrowOrderDto);
         }
     }
