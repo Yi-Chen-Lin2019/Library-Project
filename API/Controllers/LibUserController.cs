@@ -28,9 +28,17 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetLibUsers()
         {
-            GetAllLibUsersQuery query = new GetAllLibUsersQuery();
-            var result = await this.dispatcher.Dispatch(query);
-            return FromResult(result);
+            try
+            {
+                GetAllLibUsersQuery query = new GetAllLibUsersQuery();
+                var result = await this.dispatcher.Dispatch(query);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
+            
         }
 
         // GET api/<LibUserController>/5
@@ -38,22 +46,36 @@ namespace API.Controllers
         [Route("{SSN}")]
         public async Task<IActionResult> GetLibUser(int ssn)
         {
-            var result = await this.dispatcher.Dispatch(new GetLibUserQuery(ssn));
-            return FromResult(result);
+            try
+            {
+                var result = await this.dispatcher.Dispatch(new GetLibUserQuery(ssn));
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }           
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateLibUser(CreateLibUserRequest libUserRequest)
         {
-            CreateLibUserCommand command = new CreateLibUserCommand(
+            try
+            {
+                CreateLibUserCommand command = new CreateLibUserCommand(
                 libUserRequest.SSN,
                 libUserRequest.FName,
                 libUserRequest.Surname,
                 libUserRequest.Address,
                 libUserRequest.Phone,
                 libUserRequest.Campus);
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
+                var result = await this.dispatcher.Dispatch(command);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }            
         }
     }
 }
