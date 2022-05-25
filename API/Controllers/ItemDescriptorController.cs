@@ -24,24 +24,41 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetItemDescriptors()
         {
-            GetAllItemDescriptorsQuery query = new GetAllItemDescriptorsQuery();
-            var result = await this.dispatcher.Dispatch(query);
-            return FromResult(result);
+            try
+            {
+                GetAllItemDescriptorsQuery query = new GetAllItemDescriptorsQuery();
+                var result = await this.dispatcher.Dispatch(query);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }       
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetItemDescriptor(int id)
         {
-            var result = await this.dispatcher.Dispatch(new GetItemDescriptorQuery(id));
-            return FromResult(result);
+            try
+            {
+                var result = await this.dispatcher.Dispatch(new GetItemDescriptorQuery(id));
+                return FromResult(result);
+
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
         }
 
         [HttpPost]
         [Route("Map")]
         public async Task<IActionResult> CreateMap(CreateItemDescriptorRequest itemDescriptorRequest)
         {
-            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+            try
+            {
+                CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
                 itemDescriptorRequest.Year,
                 itemDescriptorRequest.Author,
                 itemDescriptorRequest.Title,
@@ -50,15 +67,22 @@ namespace API.Controllers
                 itemDescriptorRequest.BorrowType,
                 itemDescriptorRequest.ItemDescriptorType
                 );
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
+                var result = await this.dispatcher.Dispatch(command);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }          
         }
 
         [HttpPost]
         [Route("Article")]
         public async Task<IActionResult> CreateArticle(CreateItemDescriptorRequest itemDescriptorRequest)
         {
-            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+            try
+            {
+                CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
                 itemDescriptorRequest.Year,
                 itemDescriptorRequest.Author,
                 itemDescriptorRequest.Title,
@@ -69,28 +93,41 @@ namespace API.Controllers
                 itemDescriptorRequest.Subject,
                 itemDescriptorRequest.ReleaseDate
                 );
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
+                var result = await this.dispatcher.Dispatch(command);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }          
         }
 
         [HttpPost]
         [Route("Book")]
         public async Task<IActionResult> CreateBook(CreateItemDescriptorRequest itemDescriptorRequest)
         {
-            CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
-                itemDescriptorRequest.Year,
-                itemDescriptorRequest.Author,
-                itemDescriptorRequest.Title,
-                itemDescriptorRequest.Description,
-                itemDescriptorRequest.Publisher,
-                itemDescriptorRequest.BorrowType,
-                itemDescriptorRequest.ItemDescriptorType,
-                itemDescriptorRequest.Subject,
-                itemDescriptorRequest.ISBN,
-                itemDescriptorRequest.Edition
-                );
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
+            try
+            {
+                CreateItemDescriptorCommand command = new CreateItemDescriptorCommand(
+                    itemDescriptorRequest.Year,
+                    itemDescriptorRequest.Author,
+                    itemDescriptorRequest.Title,
+                    itemDescriptorRequest.Description,
+                    itemDescriptorRequest.Publisher,
+                    itemDescriptorRequest.BorrowType,
+                    itemDescriptorRequest.ItemDescriptorType,
+                    itemDescriptorRequest.Subject,
+                    itemDescriptorRequest.ISBN,
+                    itemDescriptorRequest.Edition
+                    );
+                var result = await this.dispatcher.Dispatch(command);
+                return FromResult(result);
+
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
         }
     }
 }

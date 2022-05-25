@@ -28,39 +28,69 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBorrowOrders()
         {
-            GetAllBorrowOrdersQuery query = new GetAllBorrowOrdersQuery();
-            var result = await this.dispatcher.Dispatch(query);
-            return FromResult(result);
+            try
+            {
+                GetAllBorrowOrdersQuery query = new GetAllBorrowOrdersQuery();
+                var result = await this.dispatcher.Dispatch(query);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }           
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetBorrowOrder(int id)
         {
-            var result = await this.dispatcher.Dispatch(new GetBorrowOrderQuery(id));
-            return FromResult(result);
+            try
+            {
+                var result = await this.dispatcher.Dispatch(new GetBorrowOrderQuery(id));
+                return FromResult(result);
+
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
         }
 
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateBorrowOrder(UpdateBorrowOrderRequest request)
         {
-            UpdateBorrowOrderCommand updateCommand =
-                new UpdateBorrowOrderCommand(request.OrderID , request.ReturnDate);
-            var result = await dispatcher.Dispatch(updateCommand);
-            return FromResult(result);
+            try
+            {
+                UpdateBorrowOrderCommand updateCommand =
+                    new UpdateBorrowOrderCommand(request.OrderID, request.ReturnDate);
+                var result = await dispatcher.Dispatch(updateCommand);
+                return FromResult(result);
+
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateBorrowOrder(CreateBorrowOrderRequest request)
         {
-            CreateBorrowOrderCommand command = new CreateBorrowOrderCommand(
+            try
+            {
+                CreateBorrowOrderCommand command = new CreateBorrowOrderCommand(
                 request.BorrowDate,
                 request.Borrower,
                 request.Librarian,
                 request.Item);
-            var result = await this.dispatcher.Dispatch(command);
-            return FromResult(result);
+                var result = await this.dispatcher.Dispatch(command);
+                return FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex.Message);
+            }           
         }
     }
 }
