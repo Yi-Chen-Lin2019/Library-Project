@@ -78,6 +78,20 @@ namespace DAL
                 return await conn.QuerySingleAsync<int>("dbo.GetNumberOfBorrowedBooksByUserId @id", new { id = userSSN});
             }
         }
+        public async Task<IEnumerable<BorrowOrder>> GetAllOngoingBorrowOrdersAsync()
+        {
+            List<BorrowOrder> result = new List<BorrowOrder>();
+            IEnumerable<int> ids;
+            using (var conn = dataContext.CreateConnection())
+            {
+                ids = await conn.QueryAsync<int>("SELECT [OrderId] FROM [BorrowOrder] WHERE ReturnDate IS NULL");
+            }
+            foreach (var id in ids)
+            {
+                result.Add(await GetByIdAsync(id));
+            }
+            return result;
+        }
 
     }
 }

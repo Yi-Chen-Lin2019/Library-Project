@@ -149,8 +149,11 @@ namespace DAL
         {
             using (var connection = dataContext.CreateConnection())
             {
-                String query = "SELECT [ItemID], [ItemDescriptor] AS ItemDescriptorID FROM [LibraryDatabase].[dbo].[Item] WHERE ItemID = @id";
-                return await connection.QuerySingleAsync<Item>(query, new { id });
+                Item result;
+                String query = "SELECT [ItemDescriptor] AS ItemDescriptorID FROM [LibraryDatabase].[dbo].[Item] WHERE ItemID = @id";
+                int itemDesID = await connection.QuerySingleAsync<int>(query, new { id });
+                result = new Item(id, await GetByIdAsync(itemDesID));
+                return result;
             }
         }
     }

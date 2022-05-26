@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,6 +29,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBorrowOrders()
         {
+            Debug.WriteLine("MEssage sent");
             try
             {
                 GetAllBorrowOrdersQuery query = new GetAllBorrowOrdersQuery();

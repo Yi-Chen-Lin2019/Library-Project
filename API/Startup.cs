@@ -1,9 +1,13 @@
+using System;
 using System.Reflection;
+using API.Controllers;
 using API.Utilities;
 using Application;
 using Application.Contracts.Persistence;
 using AutoMapper;
 using DAL;
+using Hangfire;
+using Library.API.RecurringTasks;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,10 +60,13 @@ namespace API
             services.AddMediatR(typeof(Startup).Assembly);
 
             services.AddApplicationServices();
+
+            services.AddHangfire(x => x.UseSqlServerStorage(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddHangfireServer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRecurringJobManager recurringJobManager)
         {
             app.UseCors("Open");
 
@@ -82,6 +89,9 @@ namespace API
             });
 
             app.UseMiddleware<ExceptionHandler>(); //Handling all exceptions here
+
+            app.UseHangfireDashboard();
+            recurringJobManager.AddOrUpdate<BorrowDueDateNotification>("BorrowDueDateNotification", x => x.NotifyUsers(), Cron.Daily);
         }
     }
 }
