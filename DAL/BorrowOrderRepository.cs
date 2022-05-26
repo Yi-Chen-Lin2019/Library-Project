@@ -59,7 +59,7 @@ namespace DAL
         {
             using (var conn = dataContext.CreateConnection())
             {
-                return await conn.ExecuteAsync("UPDATE [BorrowOrder] SET ReturnDate = @ReturnDate", new { ReturnDate = entity.ReturnDate });
+                return await conn.ExecuteAsync("UPDATE [BorrowOrder] SET ReturnDate = @ReturnDate WHERE OrderID = @ID", new { ID = entity.OrderID, ReturnDate = entity.ReturnDate });
             }
         }
 
