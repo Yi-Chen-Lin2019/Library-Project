@@ -70,5 +70,14 @@ namespace DAL
                 return await conn.ExecuteAsync("DELETE FROM [BorrowOrder] WHERE OrderID = @ID", new { ID = id });
             }
         }
+
+        public async Task<int> GetCountOfUnreturnedOrders(int userSSN)
+        {
+            using (var conn = dataContext.CreateConnection())
+            {
+                return await conn.QuerySingleAsync<int>("dbo.GetNumberOfBorrowedBooksByUserId @id", new { id = userSSN});
+            }
+        }
+
     }
 }
