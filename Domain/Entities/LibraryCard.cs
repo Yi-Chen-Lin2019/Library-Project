@@ -9,8 +9,17 @@ namespace Domain.Entities
         public DateTime PrintDate { get; set; }
         public int UserSSN { get; set; }
 
-        public LibraryCard()
+        public LibraryCard(int CardID, DateTime PrintDate, int UserSSN)
         {
+            this.CardID = CardID;
+            this.PrintDate = PrintDate;
+            this.UserSSN = UserSSN;
+        }
+
+        public LibraryCard(DateTime PrintDate, int UserSSN)
+        {
+            this.PrintDate = PrintDate;
+            this.UserSSN = UserSSN;
         }
     }
 }
