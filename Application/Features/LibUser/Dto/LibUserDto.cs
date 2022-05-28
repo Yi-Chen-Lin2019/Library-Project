@@ -27,6 +27,7 @@ namespace Application.Features.LibUser.Dto
             this.SSN = SSN;
             this.FName = fName;
             this.Surname = surname;
+            this.Phone = phone;
             this.Address = address;
             this.Campus = campus;
             this.MemberType = memberType;
