@@ -30,6 +30,7 @@ namespace Domain.AggregateRoots
             this.FName = fName;
             this.Surname = surname;
             this.Address = address;
+            this.Phone = phone;
             this.Campus = campus;
             this.MemberType = memberType;
             this.LibrarianType = librarianType;
