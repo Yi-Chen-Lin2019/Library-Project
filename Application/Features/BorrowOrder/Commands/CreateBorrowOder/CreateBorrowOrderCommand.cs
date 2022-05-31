@@ -17,7 +17,9 @@ namespace Application.Features.BorrowOrder.Commands.CreateBorrowOrder
             this.BorrowDate = borrowDate;
             this.Borrower = new Domain.AggregateRoots.LibUser() { SSN = borrower.SSN};
             this.Librarian = new Domain.AggregateRoots.LibUser() { SSN = librarian.SSN };
-            this.Item = new Item() { ItemID = item.ItemID };
+            this.Item = new Item() {
+                ItemID = item.ItemID,
+                ItemDescriptor = new Domain.AggregateRoots.ItemDescriptor() { ID = item.ItemDescriptor.ID} };
         }
     }
 }
