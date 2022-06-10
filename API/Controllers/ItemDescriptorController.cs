@@ -2,9 +2,11 @@
 using System.Threading.Tasks;
 using Application;
 using Application.Features.ItemDescriptor.Commands.CreateItemDescriptor;
+using Application.Features.ItemDescriptor.Dto;
 using Application.Features.ItemDescriptor.Queries.GetAllItemDescriptors;
 using Application.Features.ItemDescriptor.Queries.GetItemDescriptor;
 using AutoMapper;
+using Domain.AggregateRoots;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,7 +67,7 @@ namespace API.Controllers
                 itemDescriptorRequest.Description,
                 itemDescriptorRequest.Publisher,
                 itemDescriptorRequest.BorrowType,
-                itemDescriptorRequest.ItemDescriptorType
+                ItemDescriptorType.Map
                 );
                 var result = await this.dispatcher.Dispatch(command);
                 return FromResult(result);
@@ -89,7 +91,7 @@ namespace API.Controllers
                 itemDescriptorRequest.Description,
                 itemDescriptorRequest.Publisher,
                 itemDescriptorRequest.BorrowType,
-                itemDescriptorRequest.ItemDescriptorType,
+                ItemDescriptorType.Article,
                 itemDescriptorRequest.Subject,
                 itemDescriptorRequest.ReleaseDate
                 );
@@ -115,7 +117,7 @@ namespace API.Controllers
                     itemDescriptorRequest.Description,
                     itemDescriptorRequest.Publisher,
                     itemDescriptorRequest.BorrowType,
-                    itemDescriptorRequest.ItemDescriptorType,
+                    ItemDescriptorType.Book,
                     itemDescriptorRequest.Subject,
                     itemDescriptorRequest.ISBN,
                     itemDescriptorRequest.Edition
